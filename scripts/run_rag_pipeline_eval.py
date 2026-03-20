@@ -201,7 +201,12 @@ def main() -> None:
     p.add_argument("--file", help="CSV 경로 (단일 모드)")
     p.add_argument("--query", help="질문 (단일 모드)")
     p.add_argument("--top-k", type=int, default=8)
-    p.add_argument("--llm", choices=("ollama", "local"), default="ollama", help="ollama=API, local=answer_llm(3B)")
+    p.add_argument(
+        "--llm",
+        choices=("ollama", "local"),
+        default="ollama",
+        help="ollama=API, local=answer_llm (ANSWER_LLM_MODEL, 기본 7B)",
+    )
     p.add_argument("-m", "--model", default=os.environ.get("OLLAMA_MODEL", "qwen2.5:7b"))
     p.add_argument("--host", default=os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434"))
     p.add_argument("--suite", type=Path, help="llm_eval_questions.json 배치 실행")

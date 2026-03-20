@@ -1,17 +1,21 @@
 """
-EXAONE-3.5-2.4B-Instruct 기반 답변 생성 모듈.
+Qwen2.5 Instruct 기반 답변 생성 모듈.
 
 라우팅 결과 + CSV 조회 데이터를 컨텍스트로 주고
 사용자 질문에 대한 자연어 답변을 생성합니다.
+
+모델: 환경변수 ANSWER_LLM_MODEL (기본 Qwen/Qwen2.5-7B-Instruct).
+  예: Qwen/Qwen2.5-3B-Instruct, Qwen/Qwen2.5-7B-Instruct, Qwen/Qwen2.5-14B-Instruct
 """
 
-import torch
+import os
 import re
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-MODEL_ID = "Qwen/Qwen2.5-3B-Instruct"
+MODEL_ID = os.environ.get("ANSWER_LLM_MODEL", "Qwen/Qwen2.5-7B-Instruct")
 
-# 4-bit 양자화 설정 (~2GB VRAM)
+# 4-bit 양자화 (3B≈2~3GB / 7B≈4~6GB / 14B는 10GB+ VRAM 권장)
 _bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_quant_type="nf4",

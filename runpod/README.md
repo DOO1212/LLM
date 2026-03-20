@@ -6,7 +6,7 @@
 
 - **GPU 템플릿**: CUDA 있는 이미지(예: PyTorch 공식, 또는 Ubuntu + NVIDIA 드라이버).
 - **디스크**: HF 모델 캐시 + 임베딩 캐시 고려해 **30GB 이상** 권장.
-- **네트워크**: Hugging Face에서 `KURE-v1`, `Qwen2.5-3B` 등을 받아야 함.
+- **네트워크**: Hugging Face에서 `KURE-v1`, 답변용 `Qwen2.5-7B-Instruct`(기본) 등을 받아야 함. 더 작은 GPU는 `ANSWER_LLM_MODEL=Qwen/Qwen2.5-3B-Instruct`.
 
 ## 2. 코드 올리기
 
@@ -52,7 +52,7 @@ chmod +x runpod/run_benchmarks.sh
 
 1. `nvidia-smi` (GPU 이름·메모리)
 2. `pytest tests/test_table_operations.py` — 백엔드 표 연산
-3. `run_rag_pipeline_eval.py` — **3단계 RAG 50문항**, `--llm local` (`answer_llm` 3B, GPU)
+3. `run_rag_pipeline_eval.py` — **3단계 RAG 50문항**, `--llm local` (`answer_llm`, 기본 7B, GPU)
 4. Ollama 있으면: `run_llm_eval.py` — **전체 CSV + LLM 50문항**
 
 로컬과 **숫자를 직접 비교**하려면 같은 브랜치·같은 `llm_eval_questions_50.json`을 쓰면 됩니다.

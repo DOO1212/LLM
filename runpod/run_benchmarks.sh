@@ -29,7 +29,7 @@ export OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:7b}"
   python3 -m pytest tests/test_table_operations.py -v --tb=short
   echo
 
-  echo "========== RAG 50q (embedding + search + answer_llm 3B local) =========="
+  echo "========== RAG 50q (embedding + search + answer_llm local, ANSWER_LLM_MODEL) =========="
   python3 scripts/run_rag_pipeline_eval.py \
     --suite scripts/llm_eval_questions_50.json \
     --top-k 10 \

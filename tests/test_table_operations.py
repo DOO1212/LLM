@@ -53,3 +53,14 @@ def test_min_price_hydraulic():
     out = run_table_operations("유압/공압 카테고리에서 단가가 가장 낮은 품목명은?", "재고", _td(h, rows))
     assert out is not None
     assert "유압 호스" in out
+
+
+def test_list_under_100000_won():
+    h, rows = _load_csv("data/inventory.csv")
+    # 유니코드 이스케이프: Windows cp949 터미널에서 소스 인코딩 깨짐 방지
+    q = "\ub2e8\uac00 10\ub9cc\uc6d0 \uc774\ud558 \uc81c\ud488 \uc54c\ub824\uc918"  # 단가 10만원 이하 제품 알려줘
+    out = run_table_operations(q, "재고", _td(h, rows))
+    assert out is not None
+    assert "\uc870\uac74\uc5d0 \ub9de\ub294 \ud488\ubaa9" in out  # 조건에 맞는 품목
+    assert "\uc720\uc555 \ud638\uc2a4" in out  # 유압 호스
+    assert "SUS304" not in out  # 125000원 초과 행은 목록에서 제외

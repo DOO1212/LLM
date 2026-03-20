@@ -647,7 +647,10 @@ def _parse_numeric_conditions(query: str, full_query: str | None = None) -> list
         _try_append_compare(num_str, unit, "이하")
 
     # 2-1) "만원 이상"을 "1만원 이상"과 동일하게 처리
-    unit_only_pattern = rf"(?<![\d\.])(억원|천만원|백만원|억|천만|백만|만원|만|천원|원)({compare_ops})"
+    # 단, "10만원이하"에서 만원 뒤의 '원'만 따로 잡혀 "1원 이하"가 붙는 오류 방지 → 단독 '원'은 만/천 직후가 아닐 때만
+    unit_only_pattern = (
+        rf"(?<![\d\.])(?:억원|천만원|백만원|억|천만|백만|만원|만|천원|(?<![만천])원)({compare_ops})"
+    )
     for unit, op_kw in re.findall(unit_only_pattern, q):
         threshold = unit_scale.get(unit, 1.0)
         op_eff = "이하" if op_kw == "이내" else op_kw
@@ -1309,6 +1312,30 @@ def _filter_rows(
     if not text_cols:
         return rows
 
+    # 단가(금액) 조건만 있고, 검색 토큰이 제품/품목 같은 일반어뿐이면 임베딩 순서가 오히려 방해 → 단가순 전체(또는 TOP_K)
+    flat_money = _flatten_numeric_groups(numeric_groups)
+    only_money_conds = bool(flat_money) and all(c.get("kind") == "money" for c in flat_money)
+    if only_money_conds and has_numeric:
+        spec_toks = _extract_search_tokens(query)
+        spec_toks = [
+            t
+            for t in spec_toks
+            if t not in _NUMERIC_QUERY_SKIP_TOKENS and t.lower() not in _NUMERIC_QUERY_SKIP_TOKENS
+        ]
+        if not spec_toks:
+            price_col = next((c for c in columns if "단가" in str(c)), None)
+            if price_col:
+
+                def _row_unit_price(r: dict) -> float:
+                    v = _to_float_value(r.get(price_col))
+                    return float("inf") if v is None else v
+
+                want_high_first = any(c.get("op") in ("이상", "초과") for c in flat_money)
+                out = sorted(rows, key=_row_unit_price, reverse=want_high_first)
+                if _ROW_EMBED_TOP_K > 0:
+                    out = out[: _ROW_EMBED_TOP_K]
+                return out
+
     query_emb = _encode_query(query)
     row_embs: np.ndarray | None = None
     if source_path and full_row_index is not None:
@@ -1488,9 +1515,12 @@ def _paths_sorted_by_relevance(paths: list[str], user_query: str) -> tuple[list[
     by_fname = {f["filename"]: " ".join(f.get("columns") or []) for f in all_files}
 
     qn = re.sub(r"\s+", "", (user_query or "").strip())
+    qn_norm = _normalize_query_for_numeric(user_query or "")
+    # "십만원 이하"처럼 한글만 있어도 정규화 후 숫자가 생김 → 재고 CSV(단가 열) 우선
     # "10만원 이하 제품" 처럼 토큰이 컬럼명과 안 겹쳐도, 수치 비교 질문이면 단가/금액 열 있는 파일을 앞으로
-    money_compare_q = bool(re.search(r"\d", qn)) and any(
-        k in qn for k in ("이하", "이상", "초과", "미만", "이내", "까지", "만원", "억", "천만", "백만", "원")
+    money_compare_q = bool(re.search(r"\d", qn_norm)) and any(
+        k in qn_norm
+        for k in ("이하", "이상", "초과", "미만", "이내", "까지", "만원", "억", "천만", "백만", "원")
     )
 
     def score(path: str) -> int:

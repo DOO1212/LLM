@@ -23,6 +23,7 @@ OPERATION_SPECS: list[dict[str, str]] = [
     {"id": "max_column", "desc": "특정 숫자 열의 최댓값 (예: 다운타임분)"},
     {"id": "production_cell", "desc": "작업일자+라인+공정+지표명으로 단일 셀 조회"},
     {"id": "finance_metric", "desc": "기준월/부서/계정과목 조건으로 단일 금액·건수 조회"},
+    {"id": "list_unit_price_threshold", "desc": "단가(원) N만원 이하/이상 등 조건에 맞는 품목 나열 또는 건수"},
 ]
 
 
@@ -323,6 +324,88 @@ def _try_production_cell(query: str, columns: list[str], rows: list[list], summa
     return "\n".join([summary, "조건에 맞는 행이 없습니다."])
 
 
+def _try_list_unit_price_threshold(query: str, columns: list[str], rows: list[list], summary: str) -> str | None:
+    """
+    '10만원 이하 제품 알려줘' 등 단가 비교 + 목록/건수.
+    data_reader와 동일한 수치 파싱·행 판정을 씁니다.
+    """
+    from data_reader import _row_satisfies_all_numeric_conds, parse_numeric_condition_groups
+
+    price_idx = _col_index(columns, ("단가(원)", "단가", "가격"))
+    if price_idx is None:
+        return None
+
+    groups = parse_numeric_condition_groups(query or "")
+    flat = [c for g in groups for c in g]
+    money_conds = [
+        c
+        for c in flat
+        if c.get("kind") == "money" and c.get("op") in ("이하", "이상", "미만", "초과", "이내", "range")
+    ]
+    if not money_conds:
+        return None
+
+    qn = re.sub(r"\s+", "", query or "")
+    # '정확히 N원' 개수 질문은 다른 러너에 맡김
+    if "정확히" in qn and ("몇" in qn or "건" in qn):
+        return None
+
+    col_list = [str(c) for c in columns]
+    matched: list[tuple[str, float | None]] = []
+    for row in rows:
+        if len(row) < len(columns):
+            continue
+        rd = {col_list[i]: row[i] for i in range(len(col_list))}
+        if not _row_satisfies_all_numeric_conds(rd, col_list, money_conds, query):
+            continue
+        name_i = _col_item_display_name(columns)
+        name = str(row[name_i]).strip() if name_i is not None and name_i < len(row) else ""
+        pv = _to_number(row[price_idx]) if price_idx < len(row) else None
+        matched.append((name or "(이름없음)", pv))
+
+    if not matched:
+        return "\n".join([summary, "조건에 맞는 품목이 없습니다."])
+
+    matched.sort(key=lambda x: (float("inf") if x[1] is None else x[1]))
+    if any(c.get("op") in ("이상", "초과") for c in money_conds) and not any(
+        c.get("op") in ("이하", "미만", "이내") for c in money_conds
+    ):
+        matched.sort(key=lambda x: (float("-inf") if x[1] is None else -x[1]))
+
+    want_count = bool(re.search(r"(몇\s*건|몇건|몇\s*개|몇개|개수|건수)", qn))
+    want_list = any(
+        k in qn
+        for k in (
+            "알려",
+            "목록",
+            "뭐",
+            "보여",
+            "조회",
+            "리스트",
+            "나열",
+            "찾아",
+            "해당",
+            "품목",
+            "제품",
+            "이름",
+        )
+    )
+
+    if want_count and not want_list:
+        return "\n".join([summary, f"조건에 맞는 품목은 총 {len(matched)}건입니다."])
+
+    lines = [summary, f"조건에 맞는 품목 {len(matched)}건 (단가 기준 정렬):"]
+    show = matched[:40]
+    for name, pv in show:
+        if pv is not None:
+            lines.append(f"- {name} ({pv:,.0f}원)")
+        else:
+            lines.append(f"- {name}")
+    if len(matched) > len(show):
+        lines.append(f"- 외 {len(matched) - len(show)}건")
+    return "\n".join(lines)
+
+
 def _try_finance_metric(query: str, columns: list[str], rows: list[list], summary: str) -> str | None:
     q = query or ""
     month = _find_month_in_query(q)
@@ -391,6 +474,7 @@ OPERATION_RUNNERS: tuple[Callable[..., str | None], ...] = (
     _try_production_cell,
     _try_sum_column_by_date,
     _try_max_column,
+    _try_list_unit_price_threshold,
     _try_count_unit_price_equals,
     _try_count_category_value,
     _try_count_column_equals_number,
