@@ -1,8 +1,0 @@
-flask
-pandas
-openpyxl
-numpy
-sentence-transformers>=2.7.0
-transformers>=4.51.0
-torch
-bitsandbytes

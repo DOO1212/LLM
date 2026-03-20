@@ -1,3 +1,0 @@
-﻿/home/doohyeon/anaconda3
-/home/doohyeon/anaconda3/envs/llm/bin/python
-Python 3.11.14
