@@ -56,3 +56,15 @@ chmod +x runpod/run_benchmarks.sh
 4. Ollama 있으면: `run_llm_eval.py` — **전체 CSV + LLM 50문항**
 
 로컬과 **숫자를 직접 비교**하려면 같은 브랜치·같은 `llm_eval_questions_50.json`을 쓰면 됩니다.
+
+## 6. (선택) Docker로 웹 서버만 올리기
+
+저장소 루트 `Dockerfile`로 빌드하면 Flask 앱이 `0.0.0.0`에 바인딩됩니다.
+
+- **포트**: RunPod가 넣어 주는 `PORT`를 읽습니다(없으면 `8000`).
+- **디버그**: 이미지 기본값은 `FLASK_DEBUG=0`입니다.
+
+```bash
+docker build -t corpdesk-chatbot .
+docker run --rm -p 8000:8000 corpdesk-chatbot
+```
