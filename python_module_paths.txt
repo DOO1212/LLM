@@ -1,0 +1,4 @@
+﻿/home/doohyeon/chatbot/app/__init__.py
+/home/doohyeon/chatbot/server.py
+
+

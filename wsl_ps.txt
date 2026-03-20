@@ -1,0 +1,31 @@
+﻿UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 19:12 ?        00:00:00 /sbin/init
+root           2       1  0 19:12 ?        00:00:00 /init
+root           8       2  0 19:12 ?        00:00:24 plan9 --control-socket 7 --log-level 4 --server-fd 8 --pipe-fd 10 --log-truncate
+root          68       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd-journald
+root         115       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd-udevd
+systemd+     189       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd-resolved
+systemd+     190       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd-timesyncd
+root         196       1  0 19:13 ?        00:00:00 /usr/sbin/cron -f -P
+message+     197       1  0 19:13 ?        00:00:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+ollama       204       1  0 19:13 ?        00:00:00 /usr/local/bin/ollama serve
+root         208       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd-logind
+root         216       1  0 19:13 hvc0     00:00:00 /sbin/agetty -o -p -- \u --noclear --keep-baud - 115200,38400,9600 vt220
+root         228       1  0 19:13 tty1     00:00:00 /sbin/agetty -o -p -- \u --noclear - linux
+syslog       230       1  0 19:13 ?        00:00:00 /usr/sbin/rsyslogd -n -iNONE
+root         238       1  0 19:13 ?        00:00:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         361       2  0 19:13 pts/1    00:00:00 /bin/login -f
+doohyeon     406       1  0 19:13 ?        00:00:00 /usr/lib/systemd/systemd --user
+doohyeon     407     406  0 19:13 ?        00:00:00 (sd-pam)
+doohyeon     427     361  0 19:13 pts/1    00:00:00 -bash
+root        4089       1  0 19:51 ?        00:00:00 /init
+doohyeon    4099    4089  0 19:51 ?        00:00:00 /home/doohyeon/anaconda3/bin/python /home/doohyeon/anaconda3/bin/conda run -n llm python server.py
+doohyeon    4106    4099  0 19:51 ?        00:00:00 /usr/bin/bash /tmp/tmp93bqwcib
+doohyeon    4116    4106  1 19:51 ?        00:00:27 python server.py
+root        6249       1  0 20:15 ?        00:00:00 /usr/libexec/wsl-pro-service
+root        6569     115  0 20:18 ?        00:00:00 (udev-worker)
+root        6574     115  0 20:18 ?        00:00:00 (udev-worker)
+root        6587     115  0 20:18 ?        00:00:00 (udev-worker)
+root        6588       2  0 20:18 ?        00:00:00 /init
+root        6589    6588  0 20:18 ?        00:00:00 /init
+doohyeon    6590    6589  0 20:18 pts/0    00:00:00 ps -ef

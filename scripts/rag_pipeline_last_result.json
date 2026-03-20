@@ -1,0 +1,2273 @@
+{
+  "passed": 42,
+  "total": 50,
+  "items": [
+    {
+      "id": "inv-01",
+      "pass": false,
+      "missing": [
+        "SUS304 2T"
+      ],
+      "rag": {
+        "query": "단가(원)가 10만원 이상인 품목명만 나열해줘.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          31,
+          16,
+          10,
+          11,
+          25,
+          27,
+          9,
+          20,
+          21,
+          3
+        ],
+        "similarities": [
+          0.4715,
+          0.4316,
+          0.4078,
+          0.4074,
+          0.4002,
+          0.3953,
+          0.3905,
+          0.3882,
+          0.3783,
+          0.3771
+        ],
+        "embed_seconds": 0.865,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.681,
+        "total_seconds": 2.56,
+        "answer": "알루미늄 판 10T, 구리 봉 D10, 환봉 D25, 알루미늄 판 5T"
+      }
+    },
+    {
+      "id": "inv-02",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "상태가 '부족'인 품목명은 무엇인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          8,
+          27,
+          3,
+          28,
+          26,
+          12,
+          10,
+          7,
+          14,
+          13
+        ],
+        "similarities": [
+          0.4778,
+          0.3852,
+          0.3762,
+          0.3715,
+          0.3697,
+          0.3657,
+          0.3617,
+          0.359,
+          0.3491,
+          0.3471
+        ],
+        "embed_seconds": 0.872,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.742,
+        "total_seconds": 1.615,
+        "answer": "비상정지버튼"
+      }
+    },
+    {
+      "id": "inv-03",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "단가(원)가 정확히 98000원인 행은 몇 건인가? 숫자만 답해줘.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          31,
+          21,
+          9,
+          0,
+          6,
+          25,
+          16,
+          29,
+          20,
+          22
+        ],
+        "similarities": [
+          0.3707,
+          0.3543,
+          0.3505,
+          0.3494,
+          0.3485,
+          0.3476,
+          0.3387,
+          0.3361,
+          0.3357,
+          0.3355
+        ],
+        "embed_seconds": 0.888,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.663,
+        "total_seconds": 1.552,
+        "answer": "2"
+      }
+    },
+    {
+      "id": "inv-04",
+      "pass": false,
+      "missing": [
+        "PNM-002"
+      ],
+      "rag": {
+        "query": "현재수량이 12인 품목코드는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          31,
+          16,
+          29,
+          21,
+          22,
+          6,
+          4,
+          27,
+          18,
+          8
+        ],
+        "similarities": [
+          0.4107,
+          0.4099,
+          0.4021,
+          0.4015,
+          0.401,
+          0.3992,
+          0.3985,
+          0.3983,
+          0.3956,
+          0.3932
+        ],
+        "embed_seconds": 0.82,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.33,
+        "total_seconds": 2.151,
+        "answer": "품목코드 MTL-011의 현재수량은 35이며, 12가 아닌 것을 확인했습니다. 데이터에 해당하는 항목이 없습니다."
+      }
+    },
+    {
+      "id": "inv-05",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "카테고리가 '베어링'인 품목은 몇 개인가? 숫자만 답해줘.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          6,
+          1,
+          4,
+          27,
+          29,
+          19,
+          18,
+          0,
+          30,
+          12
+        ],
+        "similarities": [
+          0.4845,
+          0.4796,
+          0.4763,
+          0.3595,
+          0.3541,
+          0.3512,
+          0.3488,
+          0.3483,
+          0.3475,
+          0.3442
+        ],
+        "embed_seconds": 0.85,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.657,
+        "total_seconds": 1.508,
+        "answer": "3"
+      }
+    },
+    {
+      "id": "inv-06",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "품목코드 BRG-011의 품목명은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          1,
+          6,
+          4,
+          21,
+          27,
+          16,
+          3,
+          12,
+          10,
+          5
+        ],
+        "similarities": [
+          0.5735,
+          0.5416,
+          0.5283,
+          0.5021,
+          0.4835,
+          0.4703,
+          0.4662,
+          0.4639,
+          0.4537,
+          0.4509
+        ],
+        "embed_seconds": 0.928,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.834,
+        "total_seconds": 1.764,
+        "answer": "테이퍼 베어링 30204"
+      }
+    },
+    {
+      "id": "inv-07",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "담당자가 이영희인 품목은 몇 개인가? 숫자만.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          6,
+          4,
+          1,
+          31,
+          25,
+          20,
+          15,
+          21,
+          29,
+          18
+        ],
+        "similarities": [
+          0.5096,
+          0.5071,
+          0.507,
+          0.4424,
+          0.4394,
+          0.4371,
+          0.4267,
+          0.4202,
+          0.4187,
+          0.414
+        ],
+        "embed_seconds": 0.875,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.657,
+        "total_seconds": 1.534,
+        "answer": "3"
+      }
+    },
+    {
+      "id": "inv-08",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "창고위치가 E-1인 행의 담당자 이름은 누구인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          31,
+          25,
+          18,
+          21,
+          29,
+          11,
+          22,
+          16,
+          30,
+          12
+        ],
+        "similarities": [
+          0.49,
+          0.4832,
+          0.4824,
+          0.4814,
+          0.4791,
+          0.4764,
+          0.474,
+          0.4567,
+          0.4513,
+          0.4399
+        ],
+        "embed_seconds": 0.909,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.016,
+        "total_seconds": 1.926,
+        "answer": "창고 위치가 E-1인 행의 담당자 이름은 한동훈입니다."
+      }
+    },
+    {
+      "id": "inv-09",
+      "pass": false,
+      "missing": [
+        "유압 호스"
+      ],
+      "rag": {
+        "query": "유압/공압 카테고리에서 단가(원)가 가장 낮은 품목명은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          19,
+          17,
+          26,
+          28,
+          7,
+          9,
+          27,
+          10,
+          13
+        ],
+        "similarities": [
+          0.5625,
+          0.5375,
+          0.5273,
+          0.5139,
+          0.5114,
+          0.4997,
+          0.4327,
+          0.4154,
+          0.4125,
+          0.4118
+        ],
+        "embed_seconds": 0.943,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.646,
+        "total_seconds": 2.591,
+        "answer": "유압/공압 카테고리에서 단가(원)가 가장 낮은 품목명은 공압 실린더 50x100입니다. 단가는 85000원입니다."
+      }
+    },
+    {
+      "id": "inv-10",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "최소발주량이 3인 품목코드는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          22,
+          0,
+          27,
+          28,
+          10,
+          29,
+          26,
+          19,
+          8
+        ],
+        "similarities": [
+          0.4147,
+          0.3941,
+          0.3936,
+          0.3886,
+          0.3857,
+          0.38,
+          0.3788,
+          0.3762,
+          0.3734,
+          0.3717
+        ],
+        "embed_seconds": 0.845,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.768,
+        "total_seconds": 1.615,
+        "answer": "CNS-001"
+      }
+    },
+    {
+      "id": "inv-11",
+      "pass": false,
+      "missing": [
+        "다음 중 하나 필요: 2, 두"
+      ],
+      "rag": {
+        "query": "단위가 kg인 행은 몇 건인가? 숫자만.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          12,
+          21,
+          6,
+          16,
+          31,
+          30,
+          4,
+          25,
+          18,
+          22
+        ],
+        "similarities": [
+          0.4285,
+          0.4072,
+          0.3737,
+          0.37,
+          0.3606,
+          0.3563,
+          0.3553,
+          0.3539,
+          0.3528,
+          0.3516
+        ],
+        "embed_seconds": 0.899,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.643,
+        "total_seconds": 1.544,
+        "answer": "3"
+      }
+    },
+    {
+      "id": "inv-12",
+      "pass": false,
+      "missing": [
+        "4"
+      ],
+      "rag": {
+        "query": "입고예정일이 2026-04-28인 행은 몇 건인가? 숫자만.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\inventory.csv",
+        "top_k": 10,
+        "text_cols": [
+          "품목코드",
+          "품목명",
+          "카테고리",
+          "창고위치",
+          "담당자",
+          "상태"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          31,
+          30,
+          4,
+          1,
+          7,
+          22,
+          18,
+          14,
+          0,
+          17
+        ],
+        "similarities": [
+          0.3688,
+          0.3661,
+          0.3579,
+          0.3567,
+          0.356,
+          0.3557,
+          0.3521,
+          0.3509,
+          0.3493,
+          0.3478
+        ],
+        "embed_seconds": 0.852,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.683,
+        "total_seconds": 1.536,
+        "answer": "2"
+      }
+    },
+    {
+      "id": "fin-01",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03 기준일자 행에서 '제품매출'의 매출 금액은 얼마인가? 숫자로.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          8,
+          1,
+          5,
+          9,
+          2,
+          6,
+          10,
+          3
+        ],
+        "similarities": [
+          0.6422,
+          0.6422,
+          0.6422,
+          0.5152,
+          0.5152,
+          0.5152,
+          0.437,
+          0.437,
+          0.437,
+          0.4202
+        ],
+        "embed_seconds": 0.163,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.358,
+        "total_seconds": 1.531,
+        "answer": "2026-03 기준일자 행에서 '제품매출'의 매출 금액은 201000000입니다."
+      }
+    },
+    {
+      "id": "fin-02",
+      "pass": false,
+      "missing": [
+        "제품매출"
+      ],
+      "rag": {
+        "query": "손익이 70000000인 행의 계정과목 이름과 손익 숫자를 둘 다 답해줘.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          8,
+          2,
+          6,
+          10,
+          1,
+          5,
+          9,
+          3
+        ],
+        "similarities": [
+          0.459,
+          0.459,
+          0.459,
+          0.4039,
+          0.4039,
+          0.4039,
+          0.3589,
+          0.3589,
+          0.3589,
+          0.3435
+        ],
+        "embed_seconds": 0.164,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.086,
+        "total_seconds": 1.252,
+        "answer": "계정과목 이름은 \"제조원가\"이고, 손익 숫자는 70000000입니다."
+      }
+    },
+    {
+      "id": "fin-03",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-02 기준일자에서 물류 부서의 운송비 비용은 얼마인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          7,
+          11,
+          2,
+          6,
+          10,
+          1,
+          5,
+          9,
+          0
+        ],
+        "similarities": [
+          0.7845,
+          0.7845,
+          0.7845,
+          0.5292,
+          0.5292,
+          0.5292,
+          0.4584,
+          0.4584,
+          0.4584,
+          0.4065
+        ],
+        "embed_seconds": 0.166,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.231,
+        "total_seconds": 1.398,
+        "answer": "2026-02 기준일자에서 물류 부서의 운송비 비용은 7600000입니다."
+      }
+    },
+    {
+      "id": "fin-04",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "매출 열의 숫자가 가장 큰 계정과목은 무엇인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          8,
+          2,
+          6,
+          10,
+          1,
+          5,
+          9,
+          3
+        ],
+        "similarities": [
+          0.5384,
+          0.5384,
+          0.5384,
+          0.4242,
+          0.4242,
+          0.4242,
+          0.4032,
+          0.4032,
+          0.4032,
+          0.341
+        ],
+        "embed_seconds": 0.166,
+        "search_seconds": 0.0,
+        "llm_seconds": 2.328,
+        "total_seconds": 2.496,
+        "answer": "제품매출입니다. 제품매출의 매출 값이 가장 큽니다. 2026년 1월의 경우 185000000원, 2월은 192000000원, 3월은 201000000원으로, 이 중 가장 큰 값은 201000000원입니다."
+      }
+    },
+    {
+      "id": "fin-05",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-01 생산 부서의 제조원가 비용은 얼마인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          1,
+          5,
+          9,
+          3,
+          7,
+          11,
+          2,
+          6,
+          10,
+          0
+        ],
+        "similarities": [
+          0.7137,
+          0.7137,
+          0.7137,
+          0.4709,
+          0.4709,
+          0.4709,
+          0.4647,
+          0.4647,
+          0.4647,
+          0.433
+        ],
+        "embed_seconds": 0.163,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.131,
+        "total_seconds": 1.295,
+        "answer": "2026-01 생산 부서의 제조원가 비용은 98000000입니다."
+      }
+    },
+    {
+      "id": "fin-06",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-01 기준일자에서 영업 부서 제품매출의 매출 금액은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          8,
+          1,
+          5,
+          9,
+          2,
+          6,
+          10,
+          3
+        ],
+        "similarities": [
+          0.7329,
+          0.7329,
+          0.7329,
+          0.479,
+          0.479,
+          0.479,
+          0.4516,
+          0.4516,
+          0.4516,
+          0.4198
+        ],
+        "embed_seconds": 0.166,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.745,
+        "total_seconds": 0.913,
+        "answer": "185000000"
+      }
+    },
+    {
+      "id": "fin-07",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03 기준일자에서 관리 부서 행의 전표처리건수는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          6,
+          10,
+          0,
+          4,
+          8,
+          3,
+          7,
+          11,
+          1
+        ],
+        "similarities": [
+          0.5262,
+          0.5262,
+          0.5262,
+          0.4354,
+          0.4354,
+          0.4354,
+          0.3956,
+          0.3956,
+          0.3956,
+          0.342
+        ],
+        "embed_seconds": 0.166,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.631,
+        "total_seconds": 0.799,
+        "answer": "61"
+      }
+    },
+    {
+      "id": "fin-08",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-02 기준일자에서 영업 부서의 미수금은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          8,
+          2,
+          6,
+          10,
+          3,
+          7,
+          11,
+          1
+        ],
+        "similarities": [
+          0.528,
+          0.528,
+          0.528,
+          0.4983,
+          0.4983,
+          0.4983,
+          0.4566,
+          0.4566,
+          0.4566,
+          0.3936
+        ],
+        "embed_seconds": 0.171,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.199,
+        "total_seconds": 1.371,
+        "answer": "2026-02 기준일자에서 영업 부서의 미수금은 18000000입니다."
+      }
+    },
+    {
+      "id": "fin-09",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03 기준일자 물류 부서 운송비 행의 손익 금액은? (부호 포함 숫자)",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          7,
+          11,
+          0,
+          4,
+          8,
+          2,
+          6,
+          10,
+          1
+        ],
+        "similarities": [
+          0.6731,
+          0.6731,
+          0.6731,
+          0.4768,
+          0.4768,
+          0.4768,
+          0.4717,
+          0.4717,
+          0.4717,
+          0.4051
+        ],
+        "embed_seconds": 0.166,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.726,
+        "total_seconds": 0.893,
+        "answer": "-8100000"
+      }
+    },
+    {
+      "id": "fin-10",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "계정과목이 관리비이고 기준일자가 2026-03-31인 행의 예산은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\finance.csv",
+        "top_k": 10,
+        "text_cols": [
+          "부서",
+          "계정과목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          6,
+          10,
+          3,
+          7,
+          11,
+          0,
+          4,
+          8,
+          1
+        ],
+        "similarities": [
+          0.6443,
+          0.6443,
+          0.6443,
+          0.4272,
+          0.4272,
+          0.4272,
+          0.4089,
+          0.4089,
+          0.4089,
+          0.4073
+        ],
+        "embed_seconds": 0.178,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.695,
+        "total_seconds": 0.875,
+        "answer": "24000000"
+      }
+    },
+    {
+      "id": "prd-01",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-12, B라인, 포장 공정의 생산량은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          9,
+          15,
+          2,
+          8,
+          14,
+          4,
+          10,
+          16,
+          0
+        ],
+        "similarities": [
+          0.6319,
+          0.6319,
+          0.6319,
+          0.573,
+          0.573,
+          0.573,
+          0.4642,
+          0.4642,
+          0.4642,
+          0.4518
+        ],
+        "embed_seconds": 0.314,
+        "search_seconds": 0.0,
+        "llm_seconds": 1.013,
+        "total_seconds": 1.341,
+        "answer": "2026-03-12, B라인, 포장 공정의 생산량은 892입니다."
+      }
+    },
+    {
+      "id": "prd-02",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-11, C라인, 검사 공정의 불량수는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          11,
+          17,
+          1,
+          7,
+          13,
+          4,
+          10,
+          16,
+          2
+        ],
+        "similarities": [
+          0.5952,
+          0.5952,
+          0.5952,
+          0.5195,
+          0.5195,
+          0.5195,
+          0.5149,
+          0.5149,
+          0.5149,
+          0.493
+        ],
+        "embed_seconds": 0.303,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.546,
+        "total_seconds": 0.851,
+        "answer": "37"
+      }
+    },
+    {
+      "id": "prd-03",
+      "pass": false,
+      "missing": [
+        "160"
+      ],
+      "rag": {
+        "query": "2026-03-10 하루 전체의 불량수 합계를 구해줘. 숫자만.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          11,
+          17,
+          4,
+          10,
+          16,
+          0,
+          6,
+          12,
+          1
+        ],
+        "similarities": [
+          0.384,
+          0.384,
+          0.384,
+          0.3662,
+          0.3662,
+          0.3662,
+          0.3261,
+          0.3261,
+          0.3261,
+          0.3249
+        ],
+        "embed_seconds": 0.289,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.445,
+        "total_seconds": 0.736,
+        "answer": "92"
+      }
+    },
+    {
+      "id": "prd-04",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-12 A라인 조립 공정의 가동률은 몇 %인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          6,
+          12,
+          1,
+          7,
+          13,
+          4,
+          10,
+          16,
+          2
+        ],
+        "similarities": [
+          0.6501,
+          0.6501,
+          0.6501,
+          0.5382,
+          0.5382,
+          0.5382,
+          0.4899,
+          0.4899,
+          0.4899,
+          0.4447
+        ],
+        "embed_seconds": 0.284,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.57,
+        "total_seconds": 0.856,
+        "answer": "93.2%"
+      }
+    },
+    {
+      "id": "prd-05",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "데이터에서 다운타임분이 가장 큰 값은 몇 분인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          11,
+          17,
+          1,
+          7,
+          13,
+          2,
+          8,
+          14,
+          4
+        ],
+        "similarities": [
+          0.2857,
+          0.2857,
+          0.2857,
+          0.2664,
+          0.2664,
+          0.2664,
+          0.2638,
+          0.2638,
+          0.2638,
+          0.2618
+        ],
+        "embed_seconds": 0.297,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.736,
+        "total_seconds": 1.034,
+        "answer": "다운타임분이 가장 큰 값은 95분입니다."
+      }
+    },
+    {
+      "id": "prd-06",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-10 B라인 가공 공정의 생산량은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          8,
+          14,
+          3,
+          9,
+          15,
+          4,
+          10,
+          16,
+          0
+        ],
+        "similarities": [
+          0.6494,
+          0.6494,
+          0.6494,
+          0.5445,
+          0.5445,
+          0.5445,
+          0.5273,
+          0.5273,
+          0.5273,
+          0.4991
+        ],
+        "embed_seconds": 0.285,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.986,
+        "total_seconds": 1.273,
+        "answer": "2026-03-10 B라인 가공 공정의 생산량은 812입니다."
+      }
+    },
+    {
+      "id": "prd-07",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-11 A라인 검사 공정의 목표달성률은 몇 %인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          1,
+          7,
+          13,
+          0,
+          6,
+          12,
+          5,
+          11,
+          17,
+          4
+        ],
+        "similarities": [
+          0.5682,
+          0.5682,
+          0.5682,
+          0.515,
+          0.515,
+          0.515,
+          0.4653,
+          0.4653,
+          0.4653,
+          0.4221
+        ],
+        "embed_seconds": 0.302,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.601,
+        "total_seconds": 0.905,
+        "answer": "94.4%"
+      }
+    },
+    {
+      "id": "prd-08",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-12 C라인 검사 공정의 생산량은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          11,
+          17,
+          1,
+          7,
+          13,
+          2,
+          8,
+          14,
+          4
+        ],
+        "similarities": [
+          0.5552,
+          0.5552,
+          0.5552,
+          0.5211,
+          0.5211,
+          0.5211,
+          0.5085,
+          0.5085,
+          0.5085,
+          0.501
+        ],
+        "embed_seconds": 0.303,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.996,
+        "total_seconds": 1.3,
+        "answer": "2026-03-12 C라인 검사 공정의 생산량은 5486입니다."
+      }
+    },
+    {
+      "id": "prd-09",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-10 A라인 조립 공정의 목표달성률은 몇 %인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          6,
+          12,
+          4,
+          10,
+          16,
+          1,
+          7,
+          13,
+          5
+        ],
+        "similarities": [
+          0.6121,
+          0.6121,
+          0.6121,
+          0.5045,
+          0.5045,
+          0.5045,
+          0.5009,
+          0.5009,
+          0.5009,
+          0.4132
+        ],
+        "embed_seconds": 0.285,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.59,
+        "total_seconds": 0.878,
+        "answer": "94.8%"
+      }
+    },
+    {
+      "id": "prd-10",
+      "pass": false,
+      "missing": [
+        "5400"
+      ],
+      "rag": {
+        "query": "2026-03-11 작업일자 데이터에서 생산량 열의 최댓값은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          8,
+          14,
+          0,
+          6,
+          12,
+          1,
+          7,
+          13,
+          4
+        ],
+        "similarities": [
+          0.4214,
+          0.4214,
+          0.4214,
+          0.3982,
+          0.3982,
+          0.3982,
+          0.3747,
+          0.3747,
+          0.3747,
+          0.3628
+        ],
+        "embed_seconds": 0.283,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.556,
+        "total_seconds": 0.84,
+        "answer": "860"
+      }
+    },
+    {
+      "id": "prd-11",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "2026-03-12 B라인 가공 공정의 불량수는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\production.csv",
+        "top_k": 10,
+        "text_cols": [
+          "라인",
+          "공정",
+          "품목"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          8,
+          14,
+          3,
+          9,
+          15,
+          5,
+          11,
+          17,
+          4
+        ],
+        "similarities": [
+          0.6459,
+          0.6459,
+          0.6459,
+          0.5446,
+          0.5446,
+          0.5446,
+          0.5107,
+          0.5107,
+          0.5107,
+          0.5007
+        ],
+        "embed_seconds": 0.293,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.878,
+        "total_seconds": 1.174,
+        "answer": "2026-03-12 B라인 가공 공정의 불량수는 7입니다."
+      }
+    },
+    {
+      "id": "pol-01",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "연차 신청은 사용일 기준 며칠 전에 전자결재로 신청해야 하나?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          2,
+          3,
+          7,
+          5,
+          6,
+          4,
+          0,
+          1
+        ],
+        "similarities": [
+          0.7434,
+          0.5461,
+          0.4877,
+          0.4232,
+          0.4218,
+          0.4207,
+          0.3906,
+          0.3779
+        ],
+        "embed_seconds": 0.403,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.711,
+        "total_seconds": 1.125,
+        "answer": "사용 2일 전에 전자결재로 신청해야 합니다."
+      }
+    },
+    {
+      "id": "pol-02",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "재택근무는 주 몇 회 이내로 가능한가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          6,
+          0,
+          2,
+          1,
+          5,
+          7,
+          3,
+          4
+        ],
+        "similarities": [
+          0.7179,
+          0.513,
+          0.4381,
+          0.4367,
+          0.4084,
+          0.4016,
+          0.3847,
+          0.3475
+        ],
+        "embed_seconds": 0.391,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.737,
+        "total_seconds": 1.129,
+        "answer": "재택근무는 주 2회 이내 사전 승인 후 가능합니다."
+      }
+    },
+    {
+      "id": "pol-03",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "문서를 외부로 반출할 때 반드시 필요한 절차를 한 문장으로.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          4,
+          7,
+          3,
+          6,
+          5,
+          2,
+          0,
+          1
+        ],
+        "similarities": [
+          0.6358,
+          0.4694,
+          0.4235,
+          0.4084,
+          0.4052,
+          0.4019,
+          0.3704,
+          0.3542
+        ],
+        "embed_seconds": 0.377,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.801,
+        "total_seconds": 1.179,
+        "answer": "문서를 외부로 반출할 때는 사전 승인을 받아야 합니다."
+      }
+    },
+    {
+      "id": "pol-04",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "비밀번호는 며칠 주기로 변경해야 하나?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          6,
+          0,
+          4,
+          2,
+          3,
+          7,
+          1
+        ],
+        "similarities": [
+          0.6467,
+          0.4722,
+          0.4494,
+          0.444,
+          0.4257,
+          0.3998,
+          0.3915,
+          0.3758
+        ],
+        "embed_seconds": 0.396,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.705,
+        "total_seconds": 1.103,
+        "answer": "비밀번호는 90일 주기로 변경해야 합니다."
+      }
+    },
+    {
+      "id": "pol-05",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "출퇴근 기준 규정에서 퇴근 시각은 몇 시인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          6,
+          1,
+          7,
+          3,
+          4,
+          2,
+          5
+        ],
+        "similarities": [
+          0.7125,
+          0.5943,
+          0.5599,
+          0.5305,
+          0.5054,
+          0.4445,
+          0.442,
+          0.4302
+        ],
+        "embed_seconds": 0.406,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.65,
+        "total_seconds": 1.058,
+        "answer": "퇴근 시각은 18:00입니다."
+      }
+    },
+    {
+      "id": "pol-06",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "반차 신청 시 오전과 오후를 어떻게 구분하나요?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          2,
+          0,
+          7,
+          1,
+          6,
+          4,
+          5
+        ],
+        "similarities": [
+          0.7085,
+          0.5379,
+          0.5008,
+          0.4565,
+          0.456,
+          0.4301,
+          0.3784,
+          0.3349
+        ],
+        "embed_seconds": 0.425,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.829,
+        "total_seconds": 1.256,
+        "answer": "반차 신청 시 오전반차와 오후반차를 구분하여 신청해야 합니다."
+      }
+    },
+    {
+      "id": "pol-07",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "출장비 정산 규정의 승인권자 직책은?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          7,
+          4,
+          6,
+          2,
+          3,
+          1,
+          0,
+          5
+        ],
+        "similarities": [
+          0.6414,
+          0.5049,
+          0.4898,
+          0.4796,
+          0.4345,
+          0.4149,
+          0.4124,
+          0.4028
+        ],
+        "embed_seconds": 0.406,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.473,
+        "total_seconds": 0.881,
+        "answer": "관리팀장"
+      }
+    },
+    {
+      "id": "pol-08",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "재택근무 운영 기준의 적용대상은 누구인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          6,
+          0,
+          5,
+          2,
+          7,
+          1,
+          3,
+          4
+        ],
+        "similarities": [
+          0.6195,
+          0.4729,
+          0.4294,
+          0.4234,
+          0.4183,
+          0.4161,
+          0.4124,
+          0.3762
+        ],
+        "embed_seconds": 0.41,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.723,
+        "total_seconds": 1.135,
+        "answer": "재택근무 운영 기준의 적용대상은 사무직입니다."
+      }
+    },
+    {
+      "id": "pol-09",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "지각 처리 기준에서 지각으로 기록되는 시각은 몇 시 이후인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\policy.csv",
+        "top_k": 8,
+        "text_cols": [
+          "규정구분",
+          "규정명",
+          "적용대상",
+          "승인권자",
+          "핵심내용",
+          "위반시조치"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          1,
+          0,
+          7,
+          6,
+          3,
+          2,
+          5,
+          4
+        ],
+        "similarities": [
+          0.6914,
+          0.533,
+          0.4724,
+          0.4641,
+          0.445,
+          0.4268,
+          0.3723,
+          0.3597
+        ],
+        "embed_seconds": 0.384,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.746,
+        "total_seconds": 1.131,
+        "answer": "지각으로 기록되는 시각은 09:10 이후입니다."
+      }
+    },
+    {
+      "id": "msc-01",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "정기 시스템 점검은 요일과 시작 시각을 말해줘.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          7,
+          1,
+          3,
+          6,
+          2,
+          5
+        ],
+        "similarities": [
+          0.6851,
+          0.3986,
+          0.394,
+          0.387,
+          0.338,
+          0.33,
+          0.32,
+          0.3115
+        ],
+        "embed_seconds": 0.295,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.898,
+        "total_seconds": 1.204,
+        "answer": "정기 시스템 점검은 매주 수요일 19:00부터 20:00까지 진행됩니다."
+      }
+    },
+    {
+      "id": "msc-02",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "로그인 오류 해결 안내에서 먼저 시도하라고 한 것 한 가지는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          1,
+          7,
+          6,
+          0,
+          2,
+          4,
+          3,
+          5
+        ],
+        "similarities": [
+          0.6853,
+          0.6338,
+          0.5163,
+          0.4611,
+          0.4354,
+          0.4205,
+          0.3572,
+          0.3316
+        ],
+        "embed_seconds": 0.334,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.648,
+        "total_seconds": 0.984,
+        "answer": "브라우저 캐시 삭제 후 재시도입니다."
+      }
+    },
+    {
+      "id": "msc-03",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "VPN 사외 접속 시 무엇이 필요하다고 되어 있나? (두 가지 키워드)",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          6,
+          7,
+          1,
+          0,
+          2,
+          3,
+          5,
+          4
+        ],
+        "similarities": [
+          0.7386,
+          0.4385,
+          0.4378,
+          0.3524,
+          0.3301,
+          0.3139,
+          0.3124,
+          0.3016
+        ],
+        "embed_seconds": 0.32,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.774,
+        "total_seconds": 1.094,
+        "answer": "VPN 사외 접속 시 VPN 클라이언트 설치 및 인증이 필요합니다."
+      }
+    },
+    {
+      "id": "msc-04",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "조직도는 포털 어디에서 보나요?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          4,
+          1,
+          3,
+          0,
+          2,
+          5,
+          7,
+          6
+        ],
+        "similarities": [
+          0.739,
+          0.4823,
+          0.4317,
+          0.4236,
+          0.4149,
+          0.4082,
+          0.379,
+          0.3507
+        ],
+        "embed_seconds": 0.313,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.736,
+        "total_seconds": 1.05,
+        "answer": "조직도는 포털 상단 메뉴의 '조직도'에서 확인할 수 있습니다."
+      }
+    },
+    {
+      "id": "msc-05",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "문서 양식 다운로드는 어떤 용도의 양식인가?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          5,
+          3,
+          2,
+          4,
+          1,
+          0,
+          6,
+          7
+        ],
+        "similarities": [
+          0.6589,
+          0.4442,
+          0.3758,
+          0.3541,
+          0.3526,
+          0.3459,
+          0.3233,
+          0.3105
+        ],
+        "embed_seconds": 0.317,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.834,
+        "total_seconds": 1.153,
+        "answer": "문서 양식 다운로드는 전자결재를 작성하기 위한 표준 양식을 제공합니다."
+      }
+    },
+    {
+      "id": "msc-06",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "부서 게시판은 무엇을 위한 게시판인가? 한 문장 핵심만.",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          3,
+          2,
+          4,
+          5,
+          0,
+          1,
+          7,
+          6
+        ],
+        "similarities": [
+          0.7595,
+          0.5415,
+          0.4893,
+          0.4584,
+          0.3936,
+          0.3635,
+          0.3444,
+          0.2739
+        ],
+        "embed_seconds": 0.333,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.691,
+        "total_seconds": 1.027,
+        "answer": "부서 공지 및 업무 공유를 위한 게시판입니다."
+      }
+    },
+    {
+      "id": "msc-07",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "계정 잠금 해제는 누구에게 요청하나?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          7,
+          1,
+          6,
+          0,
+          2,
+          4,
+          3,
+          5
+        ],
+        "similarities": [
+          0.7056,
+          0.4895,
+          0.4737,
+          0.4179,
+          0.4014,
+          0.3605,
+          0.3153,
+          0.3113
+        ],
+        "embed_seconds": 0.326,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.688,
+        "total_seconds": 1.015,
+        "answer": "계정 잠금 해제는 IT지원 부서에 요청해야 합니다."
+      }
+    },
+    {
+      "id": "msc-08",
+      "pass": true,
+      "missing": [],
+      "rag": {
+        "query": "정기 시스템 점검의 담당 부서는?",
+        "file": "\\\\wsl.localhost\\Ubuntu\\home\\doohyeon\\chatbot\\data\\misc.csv",
+        "top_k": 8,
+        "text_cols": [
+          "분류",
+          "항목",
+          "상세설명",
+          "담당부서",
+          "참고링크"
+        ],
+        "full_row_embed": false,
+        "picked_indices": [
+          0,
+          4,
+          1,
+          3,
+          7,
+          5,
+          6,
+          2
+        ],
+        "similarities": [
+          0.6516,
+          0.4497,
+          0.3911,
+          0.3813,
+          0.3636,
+          0.3548,
+          0.3232,
+          0.3166
+        ],
+        "embed_seconds": 0.337,
+        "search_seconds": 0.0,
+        "llm_seconds": 0.424,
+        "total_seconds": 0.763,
+        "answer": "IT운영"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# Windows 다운로드 표시 (별도 파일 또는 NTFS 대체 데이터 스트림)
+*Zone.Identifier
+
+# 행 임베딩 캐시
+**/.embedding_cache/
+
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+*.db-journal

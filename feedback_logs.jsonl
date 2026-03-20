@@ -1,0 +1,9 @@
+{"timestamp": "2026-03-15T00:16:55", "employee_id": "user1", "query": "이번주 매출", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-15T00:20:14", "employee_id": "user1", "query": "이번주 매출", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-15T00:23:13", "employee_id": "user1", "query": "이번주 매출", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-15T00:24:54", "employee_id": "user1", "query": "이번주 매출", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-15T00:25:10", "employee_id": "user1", "query": "이번주 매출 얼마야?", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-19T15:09:45", "employee_id": "user1", "query": "출근 몇시야?", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-19T15:10:17", "employee_id": "user1", "query": "단가 50000원 이상 제품", "answer_snippet": "질문 의도를 정확히 파악하기 어렵습니다. 아래처럼 조금 더 구체적으로 적어 주시면 도움을 드리기 쉬워요.\n\n· 재무: 이번달 매출 얼마야? / 이번달 손익 / 예산 대비 비용\n· 재고: 재고 현황 알려줘 / 품목별 재고 수량\n· 생산: 이번주 생산량 / 가동률·불량 현황\n· 규정/근태: 근태 규정 / 연차 신청 방법\n· 기타: 담당 부서 문의 등", "rating": "dislike", "reason": "정보가 부족해요"}
+{"timestamp": "2026-03-19T15:19:54", "employee_id": "user1", "query": "출근시간", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "like"}
+{"timestamp": "2026-03-20T00:18:44", "employee_id": "user1", "query": "10만원 이하 제품", "answer_snippet": "관련 데이터를 가져왔습니다. 아래 조회 데이터 목록을 확인해 주세요.", "rating": "dislike", "reason": "답변이 틀려요"}

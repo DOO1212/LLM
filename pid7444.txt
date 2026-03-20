@@ -1,0 +1,2 @@
+﻿    PID    PPID USER     STAT CMD
+   7444    7441 doohyeon Ss+  /home/doohyeon/anaconda3/envs/llm/bin/python server.py

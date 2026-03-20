@@ -1,0 +1,5 @@
+﻿State  Recv-Q Send-Q  Local Address:Port  Peer Address:PortProcess                                   
+LISTEN 0      4096    127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=189,fd=15))
+LISTEN 0      1000   10.255.255.254:53         0.0.0.0:*                                             
+LISTEN 0      4096       127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=189,fd=17))
+LISTEN 0      4096        127.0.0.1:11434      0.0.0.0:*    users:(("ollama",pid=204,fd=3))          

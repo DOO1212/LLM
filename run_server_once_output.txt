@@ -1,0 +1,137 @@
+﻿?봽 ?쒕쾭 ?쒖옉: 援먯젙 濡쒓렇?먯꽌 ?숈뒿 ?곗씠?곕? 媛깆떊?⑸땲??..
+???깃났?곸쑝濡?1087媛쒖쓽 ?뺣떟 ?곗씠?곕? 異붿텧?덉뒿?덈떎!
+?몛 ?앹꽦???뚯씪: clarified_training_dataset.jsonl
+???숈뒿 以鍮??꾨즺: 1087媛쒖쓽 ?덉떆 ?곗씠??濡쒕뱶???뙋 ?쒕쾭 諛붿씤?? http://0.0.0.0:8000
+ * Serving Flask app 'app'
+ * Debug mode: on
+[?뚯씪 媛먯?] 'production.csv' ???앹궛
+[?뚯씪 媛먯?] 'inventory.csv' ???ш퀬
+[?뚯씪 媛먯?] 'policy.csv' ??洹쒖쑉
+[?뚯씪 媛먯?] 'random_questions_1000.csv' ???ㅼ틪 ?쒖쇅
+[?뚯씪 媛먯?] 'finance.csv' ???щТ
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'misc.csv' ??湲고?
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.csv', '?앹궛': '/home/doohyeon/chatbot/data/production.csv', '?щТ': '/home/doohyeon/chatbot/data/finance.csv', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.csv', '湲고?': '/home/doohyeon/chatbot/data/misc.csv'}
+[?뚯씪 媛먯?] 'production.csv' ???앹궛
+[?뚯씪 媛먯?] 'inventory.csv' ???ш퀬
+[?뚯씪 媛먯?] 'policy.csv' ??洹쒖쑉
+[?뚯씪 媛먯?] 'random_questions_1000.csv' ???ㅼ틪 ?쒖쇅
+[?뚯씪 媛먯?] 'finance.csv' ???щТ
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'misc.csv' ??湲고?
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.csv', '?앹궛': '/home/doohyeon/chatbot/data/production.csv', '?щТ': '/home/doohyeon/chatbot/data/finance.csv', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.csv', '湲고?': '/home/doohyeon/chatbot/data/misc.csv'}
+[?뚯씪 媛먯?] 'production.csv' ???앹궛
+[?뚯씪 媛먯?] 'inventory.csv' ???ш퀬
+[?뚯씪 媛먯?] 'policy.csv' ??洹쒖쑉
+[?뚯씪 媛먯?] 'random_questions_1000.csv' ???ㅼ틪 ?쒖쇅
+[?뚯씪 媛먯?] 'finance.csv' ???щТ
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'misc.csv' ??湲고?
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.csv', '?앹궛': '/home/doohyeon/chatbot/data/production.csv', '?щТ': '/home/doohyeon/chatbot/data/finance.csv', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.csv', '湲고?': '/home/doohyeon/chatbot/data/misc.csv'}
+[?뚯씪 媛먯?] 'production.csv' ???앹궛
+[?뚯씪 媛먯?] 'inventory.csv' ???ш퀬
+[?뚯씪 媛먯?] 'policy.csv' ??洹쒖쑉
+[?뚯씪 媛먯?] 'random_questions_1000.csv' ???ㅼ틪 ?쒖쇅
+[?뚯씪 媛먯?] 'finance.csv' ???щТ
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'misc.csv' ??湲고?
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.csv', '?앹궛': '/home/doohyeon/chatbot/data/production.csv', '?щТ': '/home/doohyeon/chatbot/data/finance.csv', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.csv', '湲고?': '/home/doohyeon/chatbot/data/misc.csv'}
+[?꾨쿋??紐⑤뜽 濡쒕뵫] jhgan/ko-sroberta-multitask ...
+[?꾨쿋??紐⑤뜽 濡쒕뵫 ?꾨즺]
+[援먯젙 ?곗씠???덊듃] ?좎궗??1.00 ??'?앹궛' (LLM 嫄대꼫?)
+[LLM] ?듬? 紐⑤뜽 濡쒕뵫 以? Qwen/Qwen2.5-3B-Instruct
+[LLM] 濡쒕뵫 ?꾨즺
+[援먯젙 ?곗씠???덊듃] ?좎궗??1.00 ??'?앹궛' (LLM 嫄대꼫?)
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 二??곸뾽 留ㅼ텧 吏묎퀎 ?뚮젮以? sim=0.81 vote=?щТ score=2.251 gap=1.690
+[?꾨쿋??top-k] best='?대쾲 ???곸뾽 留ㅼ텧 吏묎퀎 ?뚮젮以? sim=0.79 vote=?щТ score=2.313 gap=1.762
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???곸뾽 ?먯씡 ?붿빟 ?뚮젮以? sim=0.74 vote=?щТ score=2.748 gap=2.748
+[?꾨쿋??top-k] best='?대쾲 ???곸뾽 ?먯씡 ?붿빟 ?뚮젮以? sim=0.74 vote=?щТ score=2.748 gap=2.748
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???곸뾽 ?먯씡 ?붿빟 ?뚮젮以? sim=0.74 vote=?щТ score=2.748 gap=2.748
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???곸뾽 ?먯씡 ?붿빟 ?뚮젮以? sim=0.74 vote=?щТ score=2.748 gap=2.748
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.224 gap=3.224
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.224 gap=3.224
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.224 gap=3.224
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.212 gap=3.212
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.212 gap=3.212
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.212 gap=3.212
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
+[?뚯씪 媛먯?] 'misc.xlsx' ??湲고?
+[?뚯씪 媛먯?] 'random_questions_1000.xlsx' ??移댄뀒怨좊━ 誘몃텇瑜?(臾댁떆??
+[?뚯씪 媛먯?] 'policy.xlsx' ??洹쒖쑉
+[?뚯씪 ?몃뜳?? {'?ш퀬': '/home/doohyeon/chatbot/data/inventory.xlsx', '?앹궛': '/home/doohyeon/chatbot/data/production.xlsx', '?щТ': '/home/doohyeon/chatbot/data/finance.xlsx', '洹쒖쑉': '/home/doohyeon/chatbot/data/policy.xlsx', '湲고?': '/home/doohyeon/chatbot/data/misc.xlsx'}
+[?꾨쿋??top-k] best='?대쾲 ???먯씡遺꾧린???ъ꽦 ?щ? ?뚮젮以? sim=0.82 vote=?щТ score=3.212 gap=3.212
+[?뚯씪 媛먯?] 'finance.xlsx' ???щТ
+[?뚯씪 媛먯?] 'production.xlsx' ???앹궛
+[?뚯씪 媛먯?] 'inventory.xlsx' ???ш퀬
