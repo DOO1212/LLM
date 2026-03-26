@@ -1,12 +1,13 @@
 import streamlit as st
 import chromadb
 from sentence_transformers import SentenceTransformer
+import requests
+import json
 import torch
-import math
 
-# 페이지 레이아웃 설정
-st.set_page_config(page_title="재고 페이징 검색", layout="wide")
-st.title("📦 재고 통합 검색 (페이징 모드)")
+# [설정] 화면 구성
+st.set_page_config(page_title="RTX 고성능 AI 비서", layout="wide")
+st.title("🚀 Gemma 2 27B 기반 지능형 재고 관리")
 
 @st.cache_resource
 def load_resources():
@@ -18,56 +19,47 @@ def load_resources():
 
 collection, model = load_resources()
 
-# 1. 사이드바 설정 (한 페이지에 몇 개씩 볼지)
-items_per_page = st.sidebar.number_input("페이지당 항목 수", min_value=5, max_value=50, value=10)
-
-# 2. 검색창
-query = st.text_input("🔍 검색어를 입력하세요 (예: 인천 창고 패딩)", "")
-
-if query:
-    # 검색 수행 (최대 5,000건)
-    query_embedding = model.encode([query]).tolist()
-    results = collection.query(
-        query_embeddings=query_embedding,
-        n_results=5000
-    )
+# [스트리밍 함수] Ollama의 응답을 한 글자씩 가져옵니다.
+def ask_gemma_stream(system_prompt, user_prompt):
+    url = "http://localhost:11434/api/generate"
+    data = {
+        "model": "gemma2:27b", # 27B 모델 지정
+        "prompt": f"<start_of_turn>user\n{system_prompt}\n\n질문: {user_prompt}<end_of_turn>\n<start_of_turn>model\n",
+        "stream": True # 스트리밍 활성화
+    }
     
-    docs = results['documents'][0]
-    total_items = len(docs)
+    response = requests.post(url, json=data, stream=True)
+    for line in response.iter_lines():
+        if line:
+            body = json.loads(line)
+            yield body.get("response", "") # 한 단어씩 반환
+
+# 채팅 UI 구현
+if prompt := st.chat_input("인천 창고 패딩 4만원 이하 다 알려줘"):
+    st.chat_message("user").markdown(prompt)
     
-    if total_items > 0:
-        # 3. 페이징 계산
-        total_pages = math.ceil(total_items / items_per_page)
+    # 1. 벡터 검색 (의미 분석)
+    with st.spinner("RTX GPU가 데이터를 정밀 분석 중..."):
+        query_embedding = model.encode([prompt]).tolist()
+        results = collection.query(query_embeddings=query_embedding, n_results=150)
+        context_docs = "\n".join(results['documents'][0])
+
+    # 2. 시스템 프롬프트 (Gemma 2 전용 형식)
+    system_instructions = f"""
+    당신은 한국 기업의 전문 재고 관리 비서입니다. 
+    반드시 한국어로만 답변하고, 제공된 [재고 정보]를 바탕으로 사실만 말하세요.
+    가격 조건이 있다면 정확히 필터링해서 보여주세요.
+
+    [재고 정보]
+    {context_docs}
+    """
+
+    # 3. 실시간 스트리밍 답변 출력
+    with st.chat_message("assistant"):
+        response_placeholder = st.empty()
+        full_response = ""
         
-        # 세션 스테이트를 이용해 현재 페이지 기억
-        if 'current_page' not in st.session_state:
-            st.session_state.current_page = 1
-            
-        st.write(f"✅ 총 {total_items}건의 검색 결과가 있습니다. (전체 {total_pages} 페이지)")
-
-        # 4. 현재 페이지에 해당하는 데이터만 슬라이싱
-        start_idx = (st.session_state.current_page - 1) * items_per_page
-        end_idx = start_idx + items_per_page
-        current_docs = docs[start_idx:end_idx]
-
-        # 데이터 출력
-        for i, doc in enumerate(current_docs):
-            st.info(f"📍 결과 {start_idx + i + 1}: {doc}")
-
-        # 5. 페이지 이동 버튼 (하단)
-        col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
-        
-        with col2:
-            if st.button("이전 페이지") and st.session_state.current_page > 1:
-                st.session_state.current_page -= 1
-                st.rerun()
-
-        with col3:
-            st.write(f"**{st.session_state.current_page} / {total_pages}**")
-
-        with col4:
-            if st.button("다음 페이지") and st.session_state.current_page < total_pages:
-                st.session_state.current_page += 1
-                st.rerun()
-    else:
-        st.warning("검색 결과가 없습니다.")
+        for chunk in ask_gemma_stream(system_instructions, prompt):
+            full_response += chunk
+            response_placeholder.markdown(full_response + "▌") # 커서 효과
+        response_placeholder.markdown(full_response)
