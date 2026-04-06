@@ -19,4 +19,4 @@ COLUMN_MAP = {
 
 }
 
-ALL_TARGET_KEYWORDS = flatten_map(COLUMN_MAP)
+ALL_COLUMN_KEYWORDS = flatten_map(COLUMN_MAP)

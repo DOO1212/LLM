@@ -3,21 +3,26 @@ import re
 import requests
 import numpy as np
 
-from sentence_transformers import SentenceTransformer
-
 from config.intent_map import ALL_INTENT_KEYWORDS
 from config.target_map import ALL_TARGET_KEYWORDS
 from config.column_map import ALL_COLUMN_KEYWORDS
 
 
 # ---------------- 임베딩 모델 ----------------
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = None
+
+def get_model():
+    global model
+    if model is None:
+        from sentence_transformers import SentenceTransformer
+        model = SentenceTransformer("all-MiniLM-L6-v2")
+    return model
 
 
 # ---------------- 임베딩 캐싱 ----------------
 def build_embedding_index(keyword_pairs):
     return [
-        (key, kw, model.encode(kw))
+        (key, kw, get_model().encode(kw))
         for key, kw in keyword_pairs
     ]
 
@@ -42,7 +47,7 @@ def detect_from_keywords(query, keyword_pairs, embedding_index=None, use_embeddi
 
     # embedding fallback
     if use_embedding and embedding_index:
-        query_vec = model.encode(query)
+        query_vec = get_model().encode(query)
 
         best_key = None
         best_score = -1
