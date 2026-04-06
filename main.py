@@ -4,17 +4,14 @@ from output_template import format_output
 
 def main():
     query = input("질문: ")
-
-    # 1. LLM → 해석
+    
     parsed = parse_query(query)
-
-    # 2. 라우팅
     result = route(parsed)
 
-    # 3. 출력
-    output = format_output(result)
-
-    print(output)
+    if isinstance(result, dict) and "error" in result:
+        print("❌", result["error"])
+    else:
+        print("✅ 답변:", result)
 
 
 if __name__ == "__main__":
