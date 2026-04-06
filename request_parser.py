@@ -1,30 +1,65 @@
-import requests
+import json
 import re
+import requests
+import numpy as np
 
-from config.intent_map import INTENT_MAP
-from config.target_map import TARGET_MAP
-from config.column_map import COLUMN_MAP
+from sentence_transformers import SentenceTransformer
 
-# ---------------- intent ----------------
-def detect_intent(query):
-    for key in INTENT_MAP:
-        if key in query:
-            return INTENT_MAP[key]
+from config.intent_map import ALL_INTENT_KEYWORDS
+from config.target_map import ALL_TARGET_KEYWORDS
+from config.column_map import ALL_COLUMN_KEYWORDS
+
+
+# ---------------- 임베딩 모델 ----------------
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+
+# ---------------- 임베딩 캐싱 ----------------
+def build_embedding_index(keyword_pairs):
+    return [
+        (key, kw, model.encode(kw))
+        for key, kw in keyword_pairs
+    ]
+
+
+INTENT_EMBEDDINGS = build_embedding_index(ALL_INTENT_KEYWORDS)
+TARGET_EMBEDDINGS = build_embedding_index(ALL_TARGET_KEYWORDS)
+COLUMN_EMBEDDINGS = build_embedding_index(ALL_COLUMN_KEYWORDS)
+
+
+# ---------------- 유사도 ----------------
+def cosine_sim(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+
+
+# ---------------- 공통 detect ----------------
+def detect_from_keywords(query, keyword_pairs, embedding_index=None, use_embedding=False):
+
+  
+    for key, kw in keyword_pairs:
+        if kw in query:
+            return key
+
+    # embedding fallback
+    if use_embedding and embedding_index:
+        query_vec = model.encode(query)
+
+        best_key = None
+        best_score = -1
+
+        for key, kw, kw_vec in embedding_index:
+            score = cosine_sim(query_vec, kw_vec)
+
+            if score > best_score:
+                best_score = score
+                best_key = key
+
+        # threshold
+        if best_score > 0.5:
+            return best_key
+
     return None
 
-# ---------------- target ----------------
-def detect_target(query):
-    for key in TARGET_MAP:
-        if key in query:
-            return TARGET_MAP[key]
-    return None
-
-# ---------------- column ----------------
-def detect_column(query):
-    for key in COLUMN_MAP:
-        if key in query:
-            return COLUMN_MAP[key]
-    return None
 
 # ---------------- LLM fallback ----------------
 def llm_parse(query):
@@ -40,6 +75,7 @@ def llm_parse(query):
   "column": ""
 }}
 """
+
     res = requests.post(
         "http://localhost:11434/api/generate",
         json={
@@ -52,28 +88,121 @@ def llm_parse(query):
 
     output = res.json().get("response", "").strip()
 
-    # ```json 제거
+    # 코드 블록 제거
     output = re.sub(r"```json", "", output)
-    output = re.sub(r"```", "", output)
+    output = re.sub(r"```", "", output).strip()
 
-    return output
+    try:
+        return json.loads(output)
+    except json.JSONDecodeError:
+        return {
+            "error": "llm_parse_failed",
+            "raw_output": output
+        }
 
 
 # ---------------- 메인 ----------------
 def parse_query(query):
 
-    intent = detect_intent(query)
-    target = detect_target(query)
-    column = detect_column(query)
+    query = query.replace("상품들", "상품")
 
-    print(f"[DEBUG] intent={intent}, target={target}, column={column}")
+    intent = detect_from_keywords(query, ALL_INTENT_KEYWORDS, INTENT_EMBEDDINGS)
+    target = detect_from_keywords(query, ALL_TARGET_KEYWORDS, TARGET_EMBEDDINGS, use_embedding=True)
+    column = detect_from_keywords(query, ALL_COLUMN_KEYWORDS, COLUMN_EMBEDDINGS)
 
-    if not intent or not target or not column:
-        print("⚠️ LLM fallback 사용")
-        return llm_parse(query)
+    filters = extract_filters(query)
+    top_k = extract_top_k(query)
+    return_column = extract_return_column(query)
 
-    return {
-        "intent": intent,
-        "target": target,
-        "column": column
-    }
+    print(f"[DEBUG] intent={intent}, target={target}, column={column}, filters={filters}, top_k={top_k}, return_col={return_column}")
+
+    if target == "products" and column is None:
+        column = "가격"
+
+    if intent and target and column:
+        return {
+            "intent": intent,
+            "target": target,
+            "column": column,
+            "filters": filters,
+            "top_k": top_k,
+            "return_column": return_column
+        }
+
+    print("⚠️ LLM fallback 사용")
+    return llm_parse(query)
+
+def extract_filters(query):
+
+    filters = []
+
+    # 이상
+    match = re.search(r"(\d+)\s*이상", query)
+    if match:
+        filters.append({
+            "column": "가격",
+            "op": ">=",
+            "value": int(match.group(1))
+        })
+
+    # 이하
+    match = re.search(r"(\d+)\s*이하", query)
+    if match:
+        filters.append({
+            "column": "가격",
+            "op": "<=",
+            "value": int(match.group(1))
+        })
+
+    # 초과
+    match = re.search(r"(\d+)\s*초과", query)
+    if match:
+        filters.append({
+            "column": "가격",
+            "op": ">",
+            "value": int(match.group(1))
+        })
+
+    # 미만
+    match = re.search(r"(\d+)\s*미만", query)
+    if match:
+        filters.append({
+            "column": "가격",
+            "op": "<",
+            "value": int(match.group(1))
+        })
+
+    return filters
+
+
+def apply_filters(df, filters):
+
+    for f in filters:
+        col = f["column"]
+        op = f["op"]
+        val = f["value"]
+
+        if op == ">=":
+            df = df[df[col] >= val]
+        elif op == "<=":
+            df = df[df[col] <= val]
+        elif op == ">":
+            df = df[df[col] > val]
+        elif op == "<":
+            df = df[df[col] < val]
+
+    return df
+
+
+def extract_top_k(query):
+    match = re.search(r"(\d+)\s*개", query)
+    if match:
+        return int(match.group(1))
+    return None
+
+def extract_return_column(query):
+
+    if "이름" in query or "상품명" in query:
+        return "상품명"
+
+    return None
