@@ -1,8 +1,21 @@
-from langchain_community.llms import Ollama
+from request_parser import parse_query
+from router import route
+from output_template import format_output
 
-llm = Ollama(model="llama3", temperature=0)
+def main():
+    query = input("질문: ")
 
-question = "안녕하세요. 앞으로 모든 답변은 한국어로 해주세요."
-response = llm.invoke(question)
+    # 1. LLM → 해석
+    parsed = parse_query(query)
 
-print(response)
+    # 2. 라우팅
+    result = route(parsed)
+
+    # 3. 출력
+    output = format_output(result)
+
+    print(output)
+
+
+if __name__ == "__main__":
+    main()
