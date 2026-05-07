@@ -1,7 +1,7 @@
 from util.flatten import flatten_map
 
 TARGET_MAP = {
-    "products": [
+    "inventory": [
         "상품", "상품들", "제품", "제품들", "물건", "물건들"
         ]
 }

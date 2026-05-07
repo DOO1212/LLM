@@ -1,66 +1,63 @@
-import pandas as pd
-import os
+# router.py
 
-from config.file_map import FILE_PATH_MAP
-from request_parser import apply_filters
+import sqlite3
+from query_builder import build_sql
 
-def route(parsed):
 
-    intent = parsed.get("intent")
-    target = parsed.get("target")
-    column = parsed.get("column")
-    filters = parsed.get("filters", [])
-    top_k = parsed.get("top_k")
-    return_column = parsed.get("return_column")
+# ---------------- 설정 ----------------
 
-    file_path = FILE_PATH_MAP.get(target)
+DB_PATH = "db/excel_to_db.db"
 
-    if not file_path or not os.path.exists(file_path):
-        return {"error": "file not found"}
 
-    df = pd.read_excel(file_path)
-    df.columns = df.columns.str.strip()
+# ---------------- SQL 실행 ----------------
 
-    if column not in df.columns:
-        return {"error": f"column not found: {column}"}
+def execute_query(sql):
 
-    # 필터 적용
-    if filters:
-        df = apply_filters(df, filters)
+    conn = sqlite3.connect(DB_PATH)
 
-    # Top N 처리
-    if top_k and intent in ["max", "min"]:
+    cursor = conn.cursor()
 
-        ascending = True if intent == "min" else False
+    print(f"[SQL]\n{sql}")
 
-        df_sorted = df.sort_values(by=column, ascending=ascending).head(top_k)
+    cursor.execute(sql)
 
-        if return_column and return_column in df.columns:
-            return df_sorted[[return_column, column]].to_dict(orient="records")
+    rows = cursor.fetchall()
 
-        return df_sorted.to_dict(orient="records")
+    # 컬럼명 추출
+    columns = [
+        desc[0]
+        for desc in cursor.description
+    ]
 
-    # 일반 연산
-    if intent == "average":
-        result = df[column].mean()
+    conn.close()
 
-    elif intent == "sum":
-        result = df[column].sum()
+    return rows, columns
 
-    elif intent == "max":
-        result = df[column].max()
 
-    elif intent == "min":
-        result = df[column].min()
+# ---------------- 결과 변환 ----------------
 
-    else:
-        return {"error": "unknown intent"}
+def format_result(rows, columns):
 
-    return {
-        "intent": intent,
-        "target": target,
-        "column": column,
-        "filters": filters,
-        "result": result
-    }
+    results = []
 
+    for row in rows:
+
+        results.append({
+            col: value
+            for col, value in zip(columns, row)
+        })
+
+    return results
+
+
+# ---------------- 메인 Router ----------------
+
+def route(ast):
+
+    sql = build_sql(ast)
+
+    rows, columns = execute_query(sql)
+
+    results = format_result(rows, columns)
+
+    return results
