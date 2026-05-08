@@ -4,11 +4,16 @@ import ollama
 import json
 import re
 
-from prompts.sql_parser_prompt import SQL_PARSER_PROMPT
+from prompts.sql_parser_prompt import build_prompt
 
 from config.llm_config import (
     LLM_MODEL,
     LLM_OPTIONS
+)
+
+from utils.ast_cache import (
+    get_cached_ast,
+    cache_ast
 )
 
 
@@ -16,12 +21,7 @@ from config.llm_config import (
 
 def ask_llm(query):
 
-    prompt = f"""
-    {SQL_PARSER_PROMPT}
-
-    질문:
-    {query}
-    """
+    prompt = build_prompt(query)
 
     response = ollama.chat(
 
@@ -42,10 +42,16 @@ def ask_llm(query):
     print("\n[RAW LLM OUTPUT]")
     print(content)
 
-    # ---------------- markdown 제거 ----------------
+    return extract_json(content)
+
+
+# ---------------- JSON 추출 ----------------
+
+def extract_json(content):
 
     content = content.strip()
 
+    # markdown 제거
     content = content.replace(
         "```json",
         ""
@@ -56,8 +62,7 @@ def ask_llm(query):
         ""
     )
 
-    # ---------------- JSON 추출 ----------------
-
+    # JSON 추출
     match = re.search(
         r"\{.*\}",
         content,
@@ -79,13 +84,8 @@ def ask_llm(query):
 
 def build_ast(llm_result):
 
-
-    operation = llm_result.get(
-        "operation"
-    )
-
-    column = llm_result.get(
-        "column"
+    aggregation = llm_result.get(
+        "aggregation"
     )
 
     filters = llm_result.get(
@@ -93,26 +93,17 @@ def build_ast(llm_result):
         []
     )
 
+    sort = llm_result.get(
+        "sort"
+    )
+
     limit = llm_result.get(
         "limit"
     )
 
-
     presentation_order = llm_result.get(
         "presentation_order"
     )
-
-    aggregation = llm_result.get(
-        "aggregation"
-    )
-
-    # ---------------- max/min 기본 limit ----------------
-
-    if operation in ["max", "min"]:
-
-        if not limit:
-
-            limit = 1
 
     # ---------------- AST ----------------
 
@@ -120,13 +111,11 @@ def build_ast(llm_result):
 
         "table": "inventory",
 
-        "aggregation" : aggregation,
-
-        "operation": operation,
-
-        "column": column,
+        "aggregation": aggregation,
 
         "filters": filters,
+
+        "sort": sort,
 
         "limit": limit,
 
@@ -136,15 +125,32 @@ def build_ast(llm_result):
     return ast
 
 
-# ---------------- 메인 Parser ----------------
+# ---------------- Parser ----------------
 
 def parse_query(query):
 
-    # 1. LLM semantic parsing
+    # ---------------- 캐시 조회 ----------------
+
+    cached_ast = get_cached_ast(query)
+
+    if cached_ast:
+
+        print("\n[AST CACHE HIT]")
+
+        return cached_ast
+
+
+    # ---------------- LLM Parsing ----------------
+
     llm_result = ask_llm(query)
 
-    # 2. AST 생성
     ast = build_ast(llm_result)
+
+
+    # ---------------- 캐시 저장 ----------------
+
+    cache_ast(query, ast)
+
 
     print("\n[AST]")
     print(ast)
