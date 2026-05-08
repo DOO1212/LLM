@@ -21,15 +21,26 @@ def load_cache():
         return {}
 
 
-    with open(
+    try:
 
-        CACHE_PATH,
-        "r",
-        encoding="utf-8"
+        with open(
 
-    ) as f:
+            CACHE_PATH,
+            "r",
+            encoding="utf-8"
 
-        return json.load(f)
+        ) as f:
+
+            return json.load(f)
+
+
+    except json.JSONDecodeError:
+
+        print(
+            "⚠️ AST 캐시 파일 손상 감지"
+        )
+
+        return {}
 
 
 # ---------------- 캐시 저장 ----------------

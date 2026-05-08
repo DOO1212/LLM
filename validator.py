@@ -133,7 +133,7 @@ def validate_ast(ast):
 
     # ---------------- limit ----------------
 
-    if limit:
+    if limit is not None:
 
         if not isinstance(limit, int):
 

@@ -1,214 +1,110 @@
 # prompts/sql_parser_prompt.py
 
-SQL_PARSER_PROMPT = """
+from prompts.system_prompt import SYSTEM_PROMPT
 
-너는 inventory 데이터베이스 전용 Query Parser다.
+from prompts.schema_prompt import SCHEMA_PROMPT
 
-반드시 JSON 객체 하나만 출력해라.
-
-설명 금지.
-코드블록 금지.
-추가 텍스트 금지.
-인사 금지.
-
---------------------------------------------------
-[DATABASE]
---------------------------------------------------
-
-table:
-- inventory
-
-columns:
-- 재고ID
-- 상품코드
-- 품목명
-- 카테고리
-- 창고
-- 재고수량
-- 안전재고
-- 단가
-- 재고금액
-- 입고일
-- 최근출고일
-- 공급업체
-- 상태
-
---------------------------------------------------
-[OUTPUT SCHEMA]
---------------------------------------------------
-
-{
-    "aggregation": null,
-
-    "filters": [],
-
-    "sort": {
-        "column": "...",
-        "direction": "ASC | DESC"
-    },
-
-    "limit": null,
-
-    "presentation_order": null
-}
-
---------------------------------------------------
-[RULES]
---------------------------------------------------
-
-1.
-가장 비싼
-→ 단가 DESC
-
-2.
-가장 싼
-→ 단가 ASC
-
-3.
-재고가 가장 많은
-→ 재고수량 DESC
-
-4.
-최근 입고된
-→ 입고일 DESC
-
-5.
-오래된 순
-→ presentation_order ASC
-
-6.
-최신순
-→ presentation_order DESC
-
-7.
-상품명 검색은 반드시 LIKE 사용.
-
-예:
-
-{
-    "column": "품목명",
-    "op": "LIKE",
-    "value": "%충전기%"
-}
-
-8.
-카테고리 검색은 = 사용.
-
-예:
-
-{
-    "column": "카테고리",
-    "op": "=",
-    "value": "전자"
-}
-
---------------------------------------------------
-[EXAMPLES]
---------------------------------------------------
-
-질문:
-가장 비싼 상품은?
-
-출력:
-{
-    "aggregation": null,
-
-    "filters": [],
-
-    "sort": {
-        "column": "단가",
-        "direction": "DESC"
-    },
-
-    "limit": 1,
-
-    "presentation_order": null
-}
+from prompts.rule_prompt import RULE_PROMPT
 
 
-질문:
-전자제품 중 가장 싼 충전기
+# ---------------- Few-shot ----------------
 
-출력:
-{
-    "aggregation": null,
+from prompts.few_shot.sorting_examples import (
+    SORTING_EXAMPLES
+)
 
-    "filters": [
-        {
-            "column": "카테고리",
-            "op": "=",
-            "value": "전자"
-        },
-        {
-            "column": "품목명",
-            "op": "LIKE",
-            "value": "%충전기%"
-        }
-    ],
+from prompts.few_shot.filtering_examples import (
+    FILTERING_EXAMPLES
+)
 
-    "sort": {
-        "column": "단가",
-        "direction": "ASC"
-    },
+from prompts.few_shot.aggregation_examples import (
+    AGGREGATION_EXAMPLES
+)
 
-    "limit": 1,
-
-    "presentation_order": null
-}
+from prompts.few_shot.limit_examples import (
+    LIMIT_EXAMPLES
+)
 
 
-질문:
-최근 입고된 충전기 3개
+# ---------------- Keyword Config ----------------
 
-출력:
-{
-    "aggregation": null,
+from config.sorting_keywords import (
+    SORTING_KEYWORDS
+)
 
-    "filters": [
-        {
-            "column": "품목명",
-            "op": "LIKE",
-            "value": "%충전기%"
-        }
-    ],
+from config.filtering_keywords import (
+    FILTERING_KEYWORDS
+)
 
-    "sort": {
-        "column": "입고일",
-        "direction": "DESC"
-    },
+from config.aggregation_keywords import (
+    AGGREGATION_KEYWORDS
+)
 
-    "limit": 3,
-
-    "presentation_order": null
-}
+from config.limit_keywords import (
+    LIMIT_KEYWORDS
+)
 
 
-질문:
-최근 입고된 충전기 3개 오래된 순으로
+# ---------------- Prompt Builder ----------------
 
-출력:
-{
-    "aggregation": null,
+def build_prompt(query):
 
-    "filters": [
-        {
-            "column": "품목명",
-            "op": "LIKE",
-            "value": "%충전기%"
-        }
-    ],
+    prompt = (
 
-    "sort": {
-        "column": "입고일",
-        "direction": "DESC"
-    },
+        SYSTEM_PROMPT
 
-    "limit": 3,
+        + SCHEMA_PROMPT
 
-    "presentation_order": {
-        "column": "입고일",
-        "direction": "ASC"
-    }
-}
+        + RULE_PROMPT
+    )
 
-"""
+
+    # ---------------- Sorting ----------------
+
+    if any(
+
+        keyword in query
+
+        for keyword in SORTING_KEYWORDS
+    ):
+
+        prompt += SORTING_EXAMPLES
+
+
+    # ---------------- Filtering ----------------
+
+    if any(
+
+        keyword in query
+
+        for keyword in FILTERING_KEYWORDS
+    ):
+
+        prompt += FILTERING_EXAMPLES
+
+
+    # ---------------- Aggregation ----------------
+
+    if any(
+
+        keyword in query
+
+        for keyword in AGGREGATION_KEYWORDS
+    ):
+
+        prompt += AGGREGATION_EXAMPLES
+
+
+    # ---------------- Limit ----------------
+
+    if any(
+
+        keyword in query
+
+        for keyword in LIMIT_KEYWORDS
+    ):
+
+        prompt += LIMIT_EXAMPLES
+
+
+    return prompt

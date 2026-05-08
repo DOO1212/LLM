@@ -7,7 +7,7 @@ from load_excel import load_excel_to_sqlite
 from request_parser import parse_query
 from validator import validate_ast
 from router import route
-from util.logger import save_log
+from utils.logger import save_log
 
 
 DB_PATH = "db/excel_to_db.db"
