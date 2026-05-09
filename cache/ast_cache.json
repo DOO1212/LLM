@@ -1,0 +1,74 @@
+{
+  "패딩 총 개수?": {
+    "table": "inventory",
+    "aggregation": {
+      "type": "average",
+      "column": "재고수량"
+    },
+    "filters": [],
+    "sort": null,
+    "limit": null,
+    "presentation_order": null
+  },
+  "패딩 중 가장 비싼 패딩은?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": 1,
+    "presentation_order": null
+  },
+  "가장 비싼 패딩은?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": 1,
+    "presentation_order": null
+  },
+  "패딩 가격 평균은?": {
+    "table": "inventory",
+    "aggregation": {
+      "type": "average",
+      "column": "재고수량"
+    },
+    "filters": [],
+    "sort": null,
+    "limit": null,
+    "presentation_order": null
+  },
+  "가장 비싼 이어폰은?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": 1,
+    "presentation_order": null
+  },
+  "가장 비싼 충전기 3개?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [
+      {
+        "column": "품목명",
+        "op": "LIKE",
+        "value": "%충전기%"
+      }
+    ],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": 3,
+    "presentation_order": null
+  }
+}

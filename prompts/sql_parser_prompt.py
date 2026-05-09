@@ -9,19 +9,19 @@ from prompts.rule_prompt import RULE_PROMPT
 
 # ---------------- Few-shot ----------------
 
-from prompts.few_shot.sorting_examples import (
+from prompts.few_shot.sorting_example import (
     SORTING_EXAMPLES
 )
 
-from prompts.few_shot.filtering_examples import (
+from prompts.few_shot.filtering_example import (
     FILTERING_EXAMPLES
 )
 
-from prompts.few_shot.aggregation_examples import (
+from prompts.few_shot.aggregation_example import (
     AGGREGATION_EXAMPLES
 )
 
-from prompts.few_shot.limit_examples import (
+from prompts.few_shot.limit_example import (
     LIMIT_EXAMPLES
 )
 

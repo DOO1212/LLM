@@ -5,6 +5,7 @@ import json
 import re
 
 from prompts.sql_parser_prompt import build_prompt
+from prompts.god_prompts import GOD_PROMPT
 
 from config.llm_config import (
     LLM_MODEL,
@@ -21,7 +22,13 @@ from utils.ast_cache import (
 
 def ask_llm(query):
 
-    prompt = build_prompt(query)
+    prompt = GOD_PROMPT
+
+    prompt += (
+            "\n\n질문:\n"
+
+            + query
+     )
 
     response = ollama.chat(
 
