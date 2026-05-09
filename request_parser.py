@@ -3,8 +3,6 @@
 import json
 import ollama
 
-from prompts.god_prompt import GOD_PROMPT
-
 from config.llm_config import (
     LLM_MODEL,
     LLM_OPTIONS
