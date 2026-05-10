@@ -1,70 +1,54 @@
-# utils/logger.py
+# utils/semantic_router.py
 
-import os
-import json
+from prompts.semantic_keywords import (
 
-from datetime import datetime
+    SORT_KEYWORDS,
+
+    FILTER_KEYWORDS,
+
+    AGGREGATION_KEYWORDS
+)
 
 
-LOG_PATH = "logs/chat.log"
+# ---------------- Keyword Matcher ----------------
 
-
-# ---------------- 로그 저장 ----------------
-
-def save_log(
+def contains_keywords(
 
     query,
-    ast,
-    validation,
-    result,
-    response_time
-
+    keywords
 ):
 
-    # logs 폴더 생성
-    os.makedirs(
-        "logs",
-        exist_ok=True
+    return any(
+
+        keyword in query
+
+        for keyword in keywords
     )
 
-    # ---------------- 로그 데이터 ----------------
 
-    log_data = {
+# ---------------- Semantic Detection ----------------
 
-        "질문일시": datetime.now().strftime(
-            "%Y-%m-%d %H:%M:%S"
+def detect_semantics(query):
+
+    semantics = {
+
+        "sorting": contains_keywords(
+
+            query,
+            SORT_KEYWORDS
         ),
 
-        "질문": query,
+        "filtering": contains_keywords(
 
-        "AST": ast,
-
-        "VALIDATION": validation,
-
-        "응답시간(초)": round(
-            response_time,
-            2
+            query,
+            FILTER_KEYWORDS
         ),
 
-        "응답": result
+        "aggregation": contains_keywords(
+
+            query,
+            AGGREGATION_KEYWORDS
+        )
     }
 
-    # ---------------- JSONL 저장 ----------------
-
-    with open(
-
-        LOG_PATH,
-        "a",
-        encoding="utf-8"
-
-    ) as f:
-
-        f.write(
-
-            json.dumps(
-                log_data,
-                ensure_ascii=False
-            )
-        )
-
-        f.write("\n")
+    return semantics

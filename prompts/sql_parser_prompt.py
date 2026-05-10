@@ -21,6 +21,10 @@ from prompts.few_shot.aggregation_example import (
     AGGREGATION_EXAMPLES
 )
 
+from prompts.few_shot.limit_example import (
+    LIMIT_EXAMPLES
+)
+
 
 # ---------------- Semantic Router ----------------
 
@@ -86,6 +90,17 @@ def build_prompt(query):
 
         selected_modules.append(
             "AGGREGATION"
+        )
+
+
+    # ---------------- Limit ----------------
+
+    if semantics["limit"]:
+
+        prompt += LIMIT_EXAMPLES
+
+        selected_modules.append(
+            "LIMIT"
         )
 
 

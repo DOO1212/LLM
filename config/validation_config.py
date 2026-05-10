@@ -1,19 +1,7 @@
-# config/valid_config.py
+# validation_config.py
 
 
-# ---------------- VALID OPERATIONS ----------------
-
-VALID_OPERATIONS = [
-
-    "max",
-    "min",
-    "average",
-    "sum",
-    "count"
-]
-
-
-# ---------------- VALID COLUMNS ----------------
+# ---------------- Schema ----------------
 
 VALID_COLUMNS = [
 
@@ -33,7 +21,7 @@ VALID_COLUMNS = [
 ]
 
 
-# ---------------- VALID FILTER OPERATORS ----------------
+# ---------------- Filter Operators ----------------
 
 VALID_FILTER_OPERATORS = [
 
@@ -43,4 +31,25 @@ VALID_FILTER_OPERATORS = [
     "<",
     ">=",
     "<="
+]
+
+
+# ---------------- Sort Directions ----------------
+
+VALID_SORT_DIRECTIONS = [
+
+    "ASC",
+    "DESC"
+]
+
+
+# ---------------- Aggregation Types ----------------
+
+VALID_AGGREGATIONS = [
+
+    "sum",
+    "average",
+    "count",
+    "max",
+    "min"
 ]

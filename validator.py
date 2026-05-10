@@ -1,5 +1,3 @@
-# validator.py
-
 from config.validation_config import (
 
     VALID_COLUMNS,
@@ -18,10 +16,6 @@ def validate_ast(ast):
 
     sort = ast.get(
         "sort"
-    )
-
-    presentation_order = ast.get(
-        "presentation_order"
     )
 
     aggregation = ast.get(
@@ -117,23 +111,9 @@ def validate_ast(ast):
             }
 
 
-    # ---------------- presentation_order ----------------
-
-    if presentation_order:
-
-        # 현재는 multi-stage sorting 미지원
-
-        return {
-
-            "valid": False,
-
-            "reason": "MULTI_STAGE_SORT_NOT_SUPPORTED"
-        }
-
-
     # ---------------- limit ----------------
 
-    if limit is not None:
+    if limit:
 
         if not isinstance(limit, int):
 
