@@ -21,27 +21,11 @@ from prompts.few_shot.aggregation_example import (
     AGGREGATION_EXAMPLES
 )
 
-from prompts.few_shot.limit_example import (
-    LIMIT_EXAMPLES
-)
 
+# ---------------- Semantic Router ----------------
 
-# ---------------- Keyword Config ----------------
-
-from config.sorting_keywords import (
-    SORTING_KEYWORDS
-)
-
-from config.filtering_keywords import (
-    FILTERING_KEYWORDS
-)
-
-from config.aggregation_keywords import (
-    AGGREGATION_KEYWORDS
-)
-
-from config.limit_keywords import (
-    LIMIT_KEYWORDS
+from utils.semantic_router import (
+    detect_semantics
 )
 
 
@@ -59,52 +43,56 @@ def build_prompt(query):
     )
 
 
+    # ---------------- Semantic Detection ----------------
+
+    semantics = detect_semantics(query)
+
+
+    # ---------------- Debug ----------------
+
+    print("\n[SEMANTICS]")
+    print(semantics)
+
+    selected_modules = []
+
+
     # ---------------- Sorting ----------------
 
-    if any(
-
-        keyword in query
-
-        for keyword in SORTING_KEYWORDS
-    ):
+    if semantics["sorting"]:
 
         prompt += SORTING_EXAMPLES
+
+        selected_modules.append(
+            "SORTING"
+        )
 
 
     # ---------------- Filtering ----------------
 
-    if any(
-
-        keyword in query
-
-        for keyword in FILTERING_KEYWORDS
-    ):
+    if semantics["filtering"]:
 
         prompt += FILTERING_EXAMPLES
+
+        selected_modules.append(
+            "FILTERING"
+        )
 
 
     # ---------------- Aggregation ----------------
 
-    if any(
-
-        keyword in query
-
-        for keyword in AGGREGATION_KEYWORDS
-    ):
+    if semantics["aggregation"]:
 
         prompt += AGGREGATION_EXAMPLES
 
+        selected_modules.append(
+            "AGGREGATION"
+        )
 
-    # ---------------- Limit ----------------
 
-    if any(
+    # ---------------- Prompt Debug ----------------
 
-        keyword in query
-
-        for keyword in LIMIT_KEYWORDS
-    ):
-
-        prompt += LIMIT_EXAMPLES
+    print("\n[PROMPT MODULES]")
+    print(selected_modules)
 
 
     return prompt
