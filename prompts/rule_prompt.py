@@ -23,14 +23,6 @@ RULE_PROMPT = """
 -> 입고일 DESC
 
 5.
-오래된 순
--> presentation_order ASC
-
-6.
-최신순
--> presentation_order DESC
-
-7.
 상품명 검색은 반드시 LIKE 사용.
 
 예:
@@ -41,7 +33,7 @@ RULE_PROMPT = """
     "value": "%충전기%"
 }
 
-8.
+6.
 카테고리 검색은 = 사용.
 
 예:
