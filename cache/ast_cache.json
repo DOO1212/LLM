@@ -70,5 +70,77 @@
     },
     "limit": 3,
     "presentation_order": null
+  },
+  "가장 비싼 패딩 이름은?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": 1,
+    "presentation_order": null
+  },
+  "전체 상풍 가격은?": {
+    "table": "inventory",
+    "aggregation": null,
+    "filters": [],
+    "sort": {
+      "column": "단가",
+      "direction": "DESC"
+    },
+    "limit": null,
+    "presentation_order": null
+  },
+  "상품 가격 총합은?": {
+    "table": "inventory",
+    "aggregation": {
+      "type": "sum",
+      "column": "재고금액"
+    },
+    "filters": [],
+    "sort": null,
+    "limit": null,
+    "presentation_order": null
+  },
+  "충전기 가격 총합은?": {
+    "table": "inventory",
+    "aggregation": {
+      "type": "sum",
+      "column": "재고금액"
+    },
+    "filters": [
+      {
+        "column": "카테고리",
+        "op": "=",
+        "value": "전자"
+      },
+      {
+        "column": "품목명",
+        "op": "LIKE",
+        "value": "%충전기%"
+      }
+    ],
+    "sort": null,
+    "limit": null,
+    "presentation_order": null
+  },
+  "패딩 가격 총합은?": {
+    "table": "inventory",
+    "aggregation": {
+      "type": "sum",
+      "column": "재고금액"
+    },
+    "filters": [
+      {
+        "column": "품목명",
+        "op": "LIKE",
+        "value": "%패딩%"
+      }
+    ],
+    "sort": null,
+    "limit": null,
+    "presentation_order": null
   }
 }

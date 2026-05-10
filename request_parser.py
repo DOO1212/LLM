@@ -3,9 +3,14 @@
 import json
 import ollama
 
+from prompts.sql_parser_prompt import (
+    build_prompt
+)
+
 from config.llm_config import (
     LLM_MODEL,
-    LLM_OPTIONS
+    LLM_OPTIONS,
+    AST_CACHE
 )
 
 from config.entity_grounding import (
@@ -22,7 +27,8 @@ from utils.ast_cache import (
 
 def ask_llm(query):
 
-    prompt = GOD_PROMPT
+
+    prompt= build_prompt(query)
 
     prompt += (
 
@@ -30,6 +36,10 @@ def ask_llm(query):
 
         + query
     )
+
+    print("\n[PROMPT]")
+    print(prompt)
+
 
     response = ollama.chat(
 
@@ -169,13 +179,17 @@ def parse_query(query):
 
     # ---------------- AST Cache ----------------
 
-    cached_ast = get_cached_ast(query)
+    # ---------------- AST Cache ----------------
 
-    if cached_ast:
+    if AST_CACHE:
 
-        print("\n[AST CACHE HIT]")
+        cached_ast = get_cached_ast(query)
 
-        return cached_ast
+        if cached_ast:
+
+            print("\n[AST CACHE HIT]")
+
+            return cached_ast
 
 
     # ---------------- LLM Parsing ----------------
@@ -202,10 +216,12 @@ def parse_query(query):
 
     # ---------------- Cache 저장 ----------------
 
-    cache_ast(
+    if AST_CACHE:
 
-        query,
-        ast
-    )
+        cache_ast(
+
+            query,
+            ast
+            )
 
     return ast

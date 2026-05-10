@@ -6,3 +6,5 @@ LLM_OPTIONS = {
     "num_predict": 256,
     "keep_alive": "30m"
 }
+
+AST_CACHE = False

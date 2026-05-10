@@ -10,7 +10,7 @@ ENTITY_GROUNDING = {
         "op": "LIKE"
     },
 
-    "에어폰": {
+    "이어폰": {
         "column": "품목명",
         "op": "LIKE"
     },
