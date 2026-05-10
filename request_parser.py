@@ -13,10 +13,6 @@ from config.llm_config import (
     AST_CACHE
 )
 
-from config.entity_grounding import (
-    ENTITY_GROUNDING
-)
-
 from utils.ast_cache import (
     get_cached_ast,
     cache_ast

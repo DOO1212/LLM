@@ -1,54 +1,83 @@
-# utils/semantic_router.py
+# utils/logger.py
 
-from prompts.semantic_keywords import (
+import os
+import json
 
-    SORT_KEYWORDS,
-
-    FILTER_KEYWORDS,
-
-    AGGREGATION_KEYWORDS
-)
+from datetime import datetime
 
 
-# ---------------- Keyword Matcher ----------------
+LOG_PATH = "logs/chat.log"
 
-def contains_keywords(
+
+# ---------------- Save Log ----------------
+
+def save_log(
 
     query,
-    keywords
+    semantics,
+    prompt_modules,
+    ast,
+    validation,
+    sql,
+    result,
+    response_time
 ):
 
-    return any(
+    # ---------------- logs 폴더 생성 ----------------
 
-        keyword in query
+    os.makedirs(
 
-        for keyword in keywords
+        "logs",
+        exist_ok=True
     )
 
 
-# ---------------- Semantic Detection ----------------
+    # ---------------- Log Data ----------------
 
-def detect_semantics(query):
+    log_data = {
 
-    semantics = {
-
-        "sorting": contains_keywords(
-
-            query,
-            SORT_KEYWORDS
+        "질문일시": datetime.now().strftime(
+            "%Y-%m-%d %H:%M:%S"
         ),
 
-        "filtering": contains_keywords(
+        "질문": query,
 
-            query,
-            FILTER_KEYWORDS
-        ),
+        "Semantics": semantics,
 
-        "aggregation": contains_keywords(
+        "PromptModules": prompt_modules,
 
-            query,
-            AGGREGATION_KEYWORDS
+        "AST": ast,
+
+        "Validation": validation,
+
+        "SQL": sql,
+
+        "응답": result,
+
+        "응답시간(초)": round(
+            response_time,
+            2
         )
     }
 
-    return semantics
+
+    # ---------------- Save ----------------
+
+    with open(
+
+        LOG_PATH,
+        "a",
+        encoding="utf-8"
+
+    ) as f:
+
+        f.write(
+
+            json.dumps(
+
+                log_data,
+                ensure_ascii=False
+            )
+        )
+
+        f.write("\n")

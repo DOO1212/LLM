@@ -1,6 +1,6 @@
 # utils/semantic_router.py
 
-from config.semantic_keywords import (
+from prompts.semantic_keywords import (
 
     SORT_KEYWORDS,
 
