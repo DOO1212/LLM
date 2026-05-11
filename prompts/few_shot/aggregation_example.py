@@ -8,7 +8,7 @@ AGGREGATION_EXAMPLES = """
 출력:
 {
     "aggregation": {
-        "type": "average",
+        "type": "AVG",
         "column": "재고수량"
     },
 
@@ -18,7 +18,7 @@ AGGREGATION_EXAMPLES = """
 
     "limit": null,
 
-    "presentation_order": null
+    "unsupported": false
 }
 
 
@@ -28,7 +28,7 @@ AGGREGATION_EXAMPLES = """
 출력:
 {
     "aggregation": {
-        "type": "sum",
+        "type": "SUM",
         "column": "재고금액"
     },
 
@@ -38,27 +38,59 @@ AGGREGATION_EXAMPLES = """
 
     "limit": null,
 
-    "presentation_order": null
+    "unsupported": false
 }
 
 
 질문:
-상품 개수는?
+패딩 재고 수량 총합은?
 
 출력:
 {
     "aggregation": {
-        "type": "count",
-        "column": "*"
+        "type": "SUM",
+        "column": "재고수량"
     },
 
-    "filters": [],
+    "filters": [
+        {
+            "column": "품목명",
+            "op": "LIKE",
+            "value": "%패딩%"
+        }
+    ],
 
     "sort": null,
 
     "limit": null,
 
-    "presentation_order": null
+    "unsupported": false
+}
+
+
+질문:
+현재 남아있는 충전기 개수는?
+
+출력:
+{
+    "aggregation": {
+        "type": "COUNT",
+        "column": "재고수량"
+    },
+
+    "filters": [
+        {
+            "column": "품목명",
+            "op": "LIKE",
+            "value": "%충전기%"
+        }
+    ],
+
+    "sort": null,
+
+    "limit": null,
+
+    "unsupported": false
 }
 
 """
