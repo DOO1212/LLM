@@ -18,16 +18,61 @@ from utils.ast_cache import (
     cache_ast
 )
 
+from utils.entity_extractor import (
+    extract_entities
+)
+
 
 # ---------------- LLM 호출 ----------------
 
 def ask_llm(query):
 
+    # ---------------- Prompt Build ----------------
+
     prompt = build_prompt(query)
+
+
+    # ---------------- Entity Extraction ----------------
+
+    entities = extract_entities(query)
+
+
+    # ---------------- Entity Injection ----------------
+
+    if entities:
+
+        prompt += "\n\n"
+
+        prompt += (
+            "--------------------------------------------------\n"
+            "[추출된 품목명]\n"
+            "--------------------------------------------------\n\n"
+        )
+
+
+        for entity in entities:
+
+            prompt += f"- {entity}\n"
+
+
+        prompt += (
+
+            "\n"
+            "반드시 위 품목명을 "
+            "filters에 포함해야 한다.\n"
+
+            "품목명 검색은 반드시 "
+            "LIKE를 사용해야 한다.\n"
+        )
+
+
+    # ---------------- User Query ----------------
 
     prompt += (
 
-        "\n\n질문:\n"
+        "\n\n"
+
+        "질문:\n"
 
         + query
     )
@@ -38,6 +83,8 @@ def ask_llm(query):
     print("\n[PROMPT]")
     print(prompt)
 
+
+    # ---------------- LLM Request ----------------
 
     response = ollama.chat(
 
@@ -55,6 +102,8 @@ def ask_llm(query):
     )
 
 
+    # ---------------- Response Content ----------------
+
     content = response["message"]["content"]
 
 
@@ -63,6 +112,8 @@ def ask_llm(query):
     print("\n[RAW LLM OUTPUT]")
     print(content)
 
+
+    # ---------------- JSON Parse ----------------
 
     return json.loads(content)
 
