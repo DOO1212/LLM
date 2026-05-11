@@ -7,4 +7,4 @@ LLM_OPTIONS = {
     "keep_alive": "30m"
 }
 
-AST_CACHE = False
+AST_CACHE = True
