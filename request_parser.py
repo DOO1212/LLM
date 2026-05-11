@@ -7,6 +7,11 @@ from prompts.sql_parser_prompt import (
     build_prompt
 )
 
+from prompts.entity_prompt import (
+    KNOWN_ENTITIES,
+    build_entity_injection_prompt
+)
+
 from config.llm_config import (
     LLM_MODEL,
     LLM_OPTIONS,
@@ -18,16 +23,29 @@ from utils.ast_cache import (
     cache_ast
 )
 
-from utils.entity_extractor import (
-    extract_entities
-)
+
+# ---------------- Entity Extraction ----------------
+
+def extract_entities(query):
+
+    entities = []
+
+
+    for entity in KNOWN_ENTITIES:
+
+        if entity in query:
+
+            entities.append(entity)
+
+
+    return entities
 
 
 # ---------------- LLM 호출 ----------------
 
 def ask_llm(query):
 
-    # ---------------- Prompt Build ----------------
+    # ---------------- Base Prompt ----------------
 
     prompt = build_prompt(query)
 
@@ -37,33 +55,18 @@ def ask_llm(query):
     entities = extract_entities(query)
 
 
-    # ---------------- Entity Injection ----------------
+    # ---------------- Entity Prompt ----------------
 
-    if entities:
-
-        prompt += "\n\n"
-
-        prompt += (
-            "--------------------------------------------------\n"
-            "[추출된 품목명]\n"
-            "--------------------------------------------------\n\n"
-        )
+    entity_prompt = build_entity_injection_prompt(
+        entities
+    )
 
 
-        for entity in entities:
+    # ---------------- Prompt Merge ----------------
 
-            prompt += f"- {entity}\n"
+    if entity_prompt:
 
-
-        prompt += (
-
-            "\n"
-            "반드시 위 품목명을 "
-            "filters에 포함해야 한다.\n"
-
-            "품목명 검색은 반드시 "
-            "LIKE를 사용해야 한다.\n"
-        )
+        prompt += "\n\n" + entity_prompt
 
 
     # ---------------- User Query ----------------
