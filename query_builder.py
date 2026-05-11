@@ -15,27 +15,51 @@ def build_select_clause(aggregation):
         "type"
     )
 
+    # ---------------- Normalization ----------------
+
+    if isinstance(agg_type, str):
+
+        agg_type = agg_type.upper()
+
+
     column = aggregation.get(
         "column"
     )
 
 
-    # COUNT
-    if agg_type == "count":
+    # ---------------- COUNT ----------------
+
+    if agg_type == "COUNT":
 
         return f"SELECT COUNT({column}) AS result"
 
 
-    # AVG
-    elif agg_type == "average":
+    # ---------------- AVG ----------------
+
+    elif agg_type == "AVG":
 
         return f"SELECT AVG({column}) AS result"
 
 
-    # SUM
-    elif agg_type == "sum":
+    # ---------------- SUM ----------------
+
+    elif agg_type == "SUM":
 
         return f"SELECT SUM({column}) AS result"
+
+
+    # ---------------- MAX ----------------
+
+    elif agg_type == "MAX":
+
+        return f"SELECT MAX({column}) AS result"
+
+
+    # ---------------- MIN ----------------
+
+    elif agg_type == "MIN":
+
+        return f"SELECT MIN({column}) AS result"
 
 
     return "SELECT *"
@@ -62,7 +86,8 @@ def build_where_clause(filters):
         value = f["value"]
 
 
-        # 문자열 처리
+        # ---------------- 문자열 처리 ----------------
+
         if isinstance(value, str):
 
             value = f"'{value}'"
@@ -93,6 +118,13 @@ def build_order_by_clause(sort):
     direction = sort.get(
         "direction"
     )
+
+
+    # ---------------- Normalization ----------------
+
+    if isinstance(direction, str):
+
+        direction = direction.upper()
 
 
     return f"ORDER BY {column} {direction}"
