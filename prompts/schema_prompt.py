@@ -28,19 +28,26 @@ columns:
 [OUTPUT SCHEMA]
 --------------------------------------------------
 
+
 {
-    "aggregation": null,
-
-    "filters": [],
-
-    "sort": {
-        "column": "...",
-        "direction": "ASC | DESC"
-    },
-
-    "limit": null,
-
-    "presentation_order": null
+  "table": "inventory",
+  "aggregation": {
+    "type": "SUM | AVG | COUNT | MAX | MIN",
+    "column": "컬럼명"
+  },
+  "filters": [
+    {
+      "column": "컬럼명",
+      "op": "=",
+      "value": "값"
+    }
+  ],
+  "sort": {
+    "column": "컬럼명",
+    "direction": "ASC | DESC"
+  },
+  "limit": 숫자,
+  "unsupported": false
 }
 
 """

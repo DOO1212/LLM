@@ -148,7 +148,10 @@ def main():
 
             result=result,
 
-            response_time=response_time
+            response_time=response_time,
+            semantics={},
+            prompt_modules=[],
+            sql=""
         )
 
 
