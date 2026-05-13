@@ -23,6 +23,15 @@ from utils.ast_cache import (
     cache_ast
 )
 
+from column_selector import (
+    ColumnSelector
+)
+
+
+# ---------------- Column Selector ----------------
+
+selector = ColumnSelector()
+
 
 # ---------------- Entity Extraction ----------------
 
@@ -30,29 +39,46 @@ def extract_entities(query):
 
     entities = []
 
-
     for entity in KNOWN_ENTITIES:
 
         if entity in query:
 
             entities.append(entity)
 
-
     return entities
 
 
-# ---------------- LLM 호출 ----------------
+# ---------------- Prompt Build ----------------
 
-def ask_llm(query):
+def build_final_prompt(
+
+    query,
+    selected_columns,
+    entities
+):
 
     # ---------------- Base Prompt ----------------
 
     prompt = build_prompt(query)
 
 
-    # ---------------- Entity Extraction ----------------
+    # ---------------- Available Columns ----------------
 
-    entities = extract_entities(query)
+    if selected_columns:
+
+        prompt += (
+
+            "\n\n"
+
+            "[사용 가능한 컬럼]\n"
+
+            + "\n".join(
+
+                f"- {column}"
+
+                for column in selected_columns
+            )
+        )
 
 
     # ---------------- Entity Prompt ----------------
@@ -60,9 +86,6 @@ def ask_llm(query):
     entity_prompt = build_entity_injection_prompt(
         entities
     )
-
-
-    # ---------------- Prompt Merge ----------------
 
     if entity_prompt:
 
@@ -78,6 +101,33 @@ def ask_llm(query):
         "질문:\n"
 
         + query
+    )
+
+    return prompt
+
+
+# ---------------- LLM Call ----------------
+
+def ask_llm(
+
+    query,
+    selected_columns
+):
+
+    # ---------------- Entity Extraction ----------------
+
+    entities = extract_entities(query)
+
+
+    # ---------------- Prompt Build ----------------
+
+    prompt = build_final_prompt(
+
+        query=query,
+
+        selected_columns=selected_columns,
+
+        entities=entities
     )
 
 
@@ -121,9 +171,13 @@ def ask_llm(query):
     return json.loads(content)
 
 
-# ---------------- AST 생성 ----------------
+# ---------------- AST Build ----------------
 
-def build_ast(llm_result):
+def build_ast(
+
+    llm_result,
+    selected_info
+):
 
     ast = {
 
@@ -144,6 +198,17 @@ def build_ast(llm_result):
 
         "limit": llm_result.get(
             "limit"
+        ),
+
+        # ---------------- Selector Metadata ----------------
+
+        "selected_columns": selected_info.get(
+            "columns",
+            []
+        ),
+
+        "return_column": selected_info.get(
+            "return_column"
         )
     }
 
@@ -168,11 +233,43 @@ def parse_query(query):
             return cached_ast
 
 
+    # ---------------- Column Selection ----------------
+
+    selected_info = selector.select_columns(
+        query
+    )
+
+
+    # ---------------- Column Debug ----------------
+
+    print("\n[COLUMN SELECTOR]")
+    print(selected_info)
+
+
+    selected_columns = selected_info.get(
+        "columns",
+        []
+    )
+
+
     # ---------------- LLM Parsing ----------------
 
-    llm_result = ask_llm(query)
+    llm_result = ask_llm(
 
-    ast = build_ast(llm_result)
+        query=query,
+
+        selected_columns=selected_columns
+    )
+
+
+    # ---------------- AST Build ----------------
+
+    ast = build_ast(
+
+        llm_result=llm_result,
+
+        selected_info=selected_info
+    )
 
 
     # ---------------- AST Debug ----------------

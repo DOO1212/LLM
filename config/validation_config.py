@@ -21,35 +21,51 @@ VALID_COLUMNS = [
 ]
 
 
-# ---------------- Filter Operators ----------------
+# ---------------- Column Synonyms ----------------
 
-VALID_FILTER_OPERATORS = [
+COLUMN_SYNONYMS = {
 
-    "=",
-    "LIKE",
-    ">",
-    "<",
-    ">=",
-    "<="
-]
+    "품목명": [
+        "제품명",
+        "상품명",
+        "이름",
+        "제품",
+        "상품"
+    ],
+
+    "단가": [
+        "가격",
+        "비용",
+        "얼마",
+        "싼",
+        "비싼"
+    ],
+
+    "재고수량": [
+        "재고",
+        "수량",
+        "남은"
+    ],
+
+    "카테고리": [
+        "전자",
+        "식품",
+        "분류"
+    ]
+}
 
 
-# ---------------- Sort Directions ----------------
+# ---------------- Aggregation Keywords ----------------
 
-VALID_SORT_DIRECTIONS = [
+AGGREGATION_KEYWORDS = {
 
-    "ASC",
-    "DESC"
-]
-
-
-# ---------------- Aggregation Types ----------------
-
-VALID_AGGREGATIONS = [
-
-    "sum",
-    "average",
-    "count",
-    "max",
-    "min"
-]
+    "총합": "sum",
+    "합계": "sum",
+    "평균": "average",
+    "최대": "max",
+    "최고": "max",
+    "최소": "min",
+    "최저": "min",
+    "가장 싼": "min",
+    "가장 비싼": "max"
+}
